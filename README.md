@@ -4,28 +4,30 @@ For xcelium:
 
 to build the RTL and run tests using Xcelium use the following commands:
 
+```
+> mkdir aura
 
-mkdir aura
+> cd aura
 
-cd aura
-
-git clone git@gitlab.vlsi.huji.cloud:freddy.gabbay/riscv-grid.git
+> git clone git@gitlab.vlsi.huji.cloud:freddy.gabbay/riscv-grid.git
 
 
-cd riscv-grid/pulp
+> cd riscv-grid/pulp
 
-make checkout
+> make checkout
 
-cp -p ../additinal_files/cb_filter_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
-cp -p ../additinal_files/stream_register_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
+> cp -p ../additinal_files/cb_filter_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
+> cp -p ../additinal_files/stream_register_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
 
-cp -p ../additinal_files/sub_per_hash_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
-cp -p ../additinal_files/apb_fll_tb.sv .bender/git/checkouts/apb_fll_if-30645ac88ad7542f/test
-cp -p ../additinal_files/fpnew_wrapper.sv .bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/
+> cp -p ../additinal_files/sub_per_hash_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
+> cp -p ../additinal_files/apb_fll_tb.sv .bender/git/checkouts/apb_fll_if-30645ac88ad7542f/test
+> cp -p ../additinal_files/fpnew_wrapper.sv .bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/
 
-make scripts
+> make scripts
 
-make build-xcelium // you can use make build-xcelium > build_xcelium.log and then less build_xcelium.log to make sure there is no error
+> make build-xcelium
+```
+ // you can use make build-xcelium > build_xcelium.log and then less build_xcelium.log to make sure there is no error
 
 now run:
 
