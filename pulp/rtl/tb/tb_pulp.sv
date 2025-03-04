@@ -641,7 +641,8 @@ module tb_pulp;
       end
 
    end
-/*
+
+`ifndef XCELIUM
     // jtag calls from dpi
     SimJTAG #(
         .TICK_DELAY (1)
@@ -659,7 +660,7 @@ module tb_pulp;
         .jtag_TDO_driven      ( 1'b1                 ),
         .exit                 ( sim_jtag_exit        )
     );
-*/
+`endif 
 
    // GPIO TEST
    genvar i;

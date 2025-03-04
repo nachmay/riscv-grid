@@ -59,7 +59,9 @@ module sub_per_hash_tb;
   // ------------------------
   // Test Bench
   // ------------------------
- // program test_cbf;
+`ifndef XCELIUM
+  program test_cbf;
+`endif 
     initial begin : shutdown_sim
       repeat (MaxCycles) @(posedge clk);
       $info("Stop, because max cycles was reached.");
@@ -97,7 +99,10 @@ module sub_per_hash_tb;
     task init_signals();
       data <= '0;
     endtask : init_signals
- // endprogram
+
+`ifndef XCELIUM
+  endprogram
+`endif
 
   // generate duts
   for (genvar i = 0; i < NoHashes; i++) begin : gen_hash_dut
