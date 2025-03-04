@@ -93,6 +93,9 @@ module cb_filter_tb;
   // ------------------------
   // Test Bench
   // ------------------------
+`ifndef XCELIUM
+  program test_cbf;
+`endif 
  // program test_cbf;
     initial begin : stimulus
       sim_done = 1'b0;
@@ -278,6 +281,9 @@ module cb_filter_tb;
       repeat (cycles) @(posedge clk);
     endtask : rand_wait
 
+`ifndef XCELIUM
+  endprogram
+`endif 
  // endprogram
 
   cb_filter #(
