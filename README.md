@@ -6,13 +6,19 @@ to build the RTL and run tests using Xcelium, use the following commands:
 
 ```
 mkdir aura
+
 cd aura
+
 git clone git@gitlab.vlsi.huji.cloud:freddy.gabbay/riscv-grid.git
 
 cd riscv-grid/pulp
+
 make checkout
+
 source ../additional_files/amended_files.sh 
+
 make scripts
+
 make build-xcelium
 ```
 you can use make build-xcelium > build_xcelium.log and then less build_xcelium.log to make sure there is no error
