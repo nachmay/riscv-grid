@@ -5,25 +5,15 @@
 to build the RTL and run tests using Xcelium, use the following commands:
 
 ```
-> mkdir aura
-> cd aura
-> git clone git@gitlab.vlsi.huji.cloud:freddy.gabbay/riscv-grid.git
+mkdir aura
+cd aura
+git clone git@gitlab.vlsi.huji.cloud:freddy.gabbay/riscv-grid.git
 
-> cd riscv-grid/pulp
-> make checkout
-
-> cp -p ../additinal_files/cb_filter_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
-> cp -p ../additinal_files/stream_register_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
-> cp -p ../additinal_files/sub_per_hash_tb.sv .bender/git/checkouts/common_cells-f18d75f6d6d026a5/test
-> cp -p ../additinal_files/apb_fll_tb.sv .bender/git/checkouts/apb_fll_if-30645ac88ad7542f/test
-> cp -p ../additinal_files/fpnew_wrapper.sv .bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/
-
-
-> source amend_files.sh
-
-
-> make scripts
-> make build-xcelium
+cd riscv-grid/pulp
+make checkout
+source ../additional_files/amended_files.sh 
+make scripts
+make build-xcelium
 ```
 you can use make build-xcelium > build_xcelium.log and then less build_xcelium.log to make sure there is no error
 
@@ -33,15 +23,8 @@ befor you cuntinue, make sure you have the following python tools: pyelftools. i
 ```
 now run:
 ```
-cd ../
-
-> export PULP_RISCV_GCC_TOOLCHAIN=/opt/riscv/
-> export PATH=/opt/riscv/bin/:$PATH
-> source pulp/setup/vsim.sh
-> source pulp-runtime/configs/pulp.sh
-
-
-> source set_var_and_config.sh
+> cd ../
+> source additional_files/set_var_and_config.sh
 
 ```
 
