@@ -68,10 +68,12 @@ else
 	@make --no-print-directory -f $(mkfile_path)/vcompile/ips.mk build
 	@make --no-print-directory -f $(mkfile_path)/vcompile/rtl.mk build
 endif
+MODELSIM_INI = $(CURDIR)/modelsim.ini  # Use local modelsim.ini in the working directory
 
 lib:
 ifndef IPAPPROX
 	@$(VLIB) work
+	@cp /tools/siemens/QUESTA/2024.3_2/questasim/modelsim.ini $(MODELSIM_INI) || true	
 	@chmod +w modelsim.ini
 	$(VMAP) work $(mkfile_path)/work
 else
@@ -89,4 +91,4 @@ else
 endif
 	@touch modelsim.ini
 	@chmod +w modelsim.ini
-	#rm modelsim.ini
+	rm modelsim.ini
