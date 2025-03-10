@@ -45,19 +45,13 @@ else
 endif
 
 
-#---------------adding changes
+
 all-xcelium: clean-xcelium build-xcelium
 
 build-xcelium: build-deps
 		./xcelium_compile.sh
 
 clean-xcelium: clean-deps
-
-#--------------end of changes
-
-
-
-
 
 
 
@@ -68,12 +62,11 @@ else
 	@make --no-print-directory -f $(mkfile_path)/vcompile/ips.mk build
 	@make --no-print-directory -f $(mkfile_path)/vcompile/rtl.mk build
 endif
-MODELSIM_INI = $(CURDIR)/modelsim.ini  # Use local modelsim.ini in the working directory
-
+#MODELSIM_INI = $(CURDIR)/modelsim.ini  # Use local modelsim.ini in the working directory
+#@cp /tools/siemens/QUESTA/2024.3_2/questasim/modelsim.ini $(MODELSIM_INI) || true	
 lib:
 ifndef IPAPPROX
 	@$(VLIB) work
-	@cp /tools/siemens/QUESTA/2024.3_2/questasim/modelsim.ini $(MODELSIM_INI) || true	
 	@chmod +w modelsim.ini
 	$(VMAP) work $(mkfile_path)/work
 else
@@ -89,6 +82,6 @@ else
 	@make --no-print-directory -f $(mkfile_path)/vcompile/ips.mk clean
 	@make --no-print-directory -f $(mkfile_path)/vcompile/rtl.mk clean
 endif
-	@touch modelsim.ini
-	@chmod +w modelsim.ini
-	rm modelsim.ini
+	#@touch modelsim.ini
+	#@chmod +w modelsim.ini
+	#rm modelsim.ini
