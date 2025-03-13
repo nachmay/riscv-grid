@@ -947,6 +947,7 @@ module tb_pulp;
                      exit_status = `EXIT_FAIL;
                      $error("Debug Module: %d tests failed", num_err);
                   end
+		  $finish;
                   $stop;
                end
 
@@ -1005,7 +1006,7 @@ module tb_pulp;
             else
                exit_status = `EXIT_FAIL;
             $display("[TB] %t - Received status core: 0x%h", $realtime, jtag_data[0][30:0]);
-
+	    $finish;
             $stop;
 
          end
