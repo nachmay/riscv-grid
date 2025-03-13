@@ -3,10 +3,6 @@ SHELL=bash
 
 PKG_DIR ?= $(PWD)/pulp-runtime
 
-XMELAB_FLAGS=-timescale 1ps/1ps -access +rwc -warn_multiple_driver -nowarn NONPRT
-
-
-
 export VSIM_PATH=$(PWD)/sim
 export PULP_PATH=$(PWD)
 
@@ -63,6 +59,8 @@ clean:
 ## Generate scripts for all tools
 ifndef IPAPPROX
 scripts: scripts-bender-vsim scripts-bender-fpga convert-to-xcelium
+
+XMELAB_FLAGS=-timescale 1ps/1ps -access +rwc -warn_multiple_driver -nowarn NONPRT
 convert-to-xcelium:
 			echo "if [ -d worklib ];  then" > $(BENDER_SIM_BUILD_DIR)/xcelium_compile.sh
 	         	echo "rm -rf worklib" >> $(BENDER_SIM_BUILD_DIR)/xcelium_compile.sh
@@ -238,11 +236,20 @@ test-checkout-gitlab:
 
 # gitlab and local test runs
 test-fast-regressions:
-	mkdir -p regression_tests/riscv_tests_soc
-	cp -r regression_tests/riscv_tests/* regression_tests/riscv_tests_soc
+	mkdir -p ../regression_tests/riscv_tests_soc
+	cp -r ../regression_tests/riscv_tests/* ../regression_tests/riscv_tests_soc
 	source setup/vsim.sh; \
-	source pulp-runtime/configs/pulp.sh; \
-	cd regression_tests && ../pulp-runtime/scripts/bwruntests.py --proc-verbose -v --report-junit -t 2000 --yaml -o simplified-runtime.xml simple-regression-tests.yaml
+	source ../pulp-runtime/configs/pulp.sh; \
+	cd ../regression_tests && ../pulp-runtime/scripts/bwruntests.py --proc-verbose -v --report-junit -t 2000 --yaml -o simplified-runtime.xml simple-regression-tests.yaml
+
+
+test-fast-regressions-xcelium:
+	mkdir -p ../regression_tests/riscv_tests_soc
+	cp -r ../regression_tests/riscv_tests/* ../regression_tests/riscv_tests_soc
+	source setup/vsim.sh; \
+	source ../pulp-runtime/configs/pulp.sh; \
+	cd ../regression_tests && ../pulp-runtime/scripts/bwruntests.py --proc-verbose -v --report-junit -t 2000 --yaml -o simplified-runtime-xcelium.xml simple-regression-tests-xcelium.yaml
+
 
 test-local-regressions: 
 	mkdir -p regression_tests/riscv_tests_soc

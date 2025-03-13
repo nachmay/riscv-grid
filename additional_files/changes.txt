@@ -1,0 +1,106 @@
+changes made to some files to make it work with our FPGA:
+
+
+
+
+
+
+changes made to some files to make it work
+
+
+path: pulp/
+File: Makefile
+Line: 185
+The change: added -64 flag
+
+
+
+path: pulp/
+File: Makefile
+Line: 238- 243
+The change: added ../ to the all paths
+
+
+
+Changes made to change the cluster to include 4 cores instead of 8:
+ 
+
+**1**
+
+Explenation: our system support 4 cores and not 8.
+path: pulp-runtime/include/archi/chips/pulp/
+File: properties.h 
+Line: 91 
+The change: changed the macro definition to 4 instead of 8 
+
+
+
+
+
+
+Changes made to some file to make it work with Xcelium:
+
+
+Makfiles changes:
+
+
+path: pulp/
+File: Makefile
+Lines: 61 -78, 150-179,246 - 251
+The change: added support for Xxcelium
+
+
+
+
+path:regression_tests/parallel_bare_tests/LU/golden
+File: Makefile
+Lines:31-32
+The change: added support for Xcelium 
+
+
+
+path:regression_tests/parallel_bare_tests/Dijkstra/golden
+File: Makefile
+Lines:31-32
+The change: added support for Xcelium 
+
+
+
+
+
+
+
+test-bench changes:
+
+**1**
+
+explenation: xcelium does not support program construct so we had to change it
+path: pulp/.bender/git/checkouts/common_cells-f18d75f6d6d026a5/test/
+File:cb_filter_tb.sv
+Lines: 
+the cahnge: there was a nested program which wrapped the lines 97 - 279 so i wrapped the "program" and "end program" in lines 96 and line 281 with ifndef XCELIUM
+
+
+**2**
+
+explenation: xcelium does not support program construct so we had to change it
+path: pulp/.bender/git/checkouts/common_cells-f18d75f6d6d026a5/test/stream_register_tb.sv 
+the cahnge: there was a nested program which wrapped the lines 74-160 so i the "program" and "end program" in lines 73 and line 161 with ifndef XCELIUM
+
+
+**3**
+
+explenation: xcelium does not support program construct so we had to change it
+path: /pulp/.bender/git/checkouts/common_cells-f18d75f6d6d026a5/test/sub_per_hash_tb.sv
+the cahnge: there was a nested program which wrapped the lines 63-99 so i the "program" and "end program" in lines 62 and line 100 with ifndef XCELIUM
+
+
+**4**
+
+explenation: xcelium does not support program construct so we had to change it
+path:/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/test/apb_fll_tb.sv
+the cahnge: there was a nested program which wrapped the line 44 so i the "program" and "end program" in lines 43 and line 45 with ifndef XCELIUM
+
+
+
+

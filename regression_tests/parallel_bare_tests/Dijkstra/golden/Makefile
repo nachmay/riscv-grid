@@ -27,3 +27,6 @@ clean:
 
 run:
 	./app
+
+run-xcelium:
+	./app

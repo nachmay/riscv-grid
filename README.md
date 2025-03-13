@@ -70,6 +70,22 @@ make clean all run-xcelium gui=1
 to run with gui
 
 
+to run all the tests:
+
+first install the follwoing packages:
+```
+pip install junit_xml
+
+pip install PrettyTable
+
+pip install pyyaml==5.1
+
+```
+then run:
+```
+make test-fast-regressions-xcelium
+```
+
 
 ## For Questasim:
 
@@ -136,3 +152,21 @@ make clean all run gui=1
 ```
 
 to run with gui
+
+
+to run all the tests:
+
+first install the follwoing packages:
+```
+pip install junit_xml
+
+pip install PrettyTable
+
+pip install pyyaml==5.1
+
+```
+then run:
+```
+make test-fast-regressions
+```
+
