@@ -282,6 +282,15 @@ ifndef VSIM_PATH
         'source $$YOUR_HW_DIR/setup/vsim.sh' or set it manually.")
 endif
 	ln -s $(VSIM_PATH)/cds.lib $@
+
+$(TARGET_BUILD_DIR)/libdpi.so:
+ifndef VSIM_PATH
+        $(error "VSIM_PATH is undefined. Either call \
+        'source $$YOUR_HW_DIR/setup/vsim.sh' or set it manually.")
+endif
+	ln -s $(VSIM_PATH)/../rtl/tb/remote_bitbang/librbs.so $@
+
+
 	
 $(TARGET_BUILD_DIR)/hdl.var:
 ifndef VSIM_PATH
@@ -355,10 +364,9 @@ else
 endif
 
 #endif
+XMSIM_FLAGS= +ENTRY_POINT=0x1c008080 +USE_SDVT_SPI=0  +USE_SDVT_SPI=0 +USE_SDVT_CPI=0 +BAUDRATE=115200 +ENABLE_DEV_DPI=0 +LOAD_L2=JTAG +USE_SDVT_I2S=0 -64 -sv_lib ./libdpi
 
-XMSIM_FLAGS= +ENTRY_POINT=0x1c008080 +USE_SDVT_SPI=0  +USE_SDVT_SPI=0 +USE_SDVT_CPI=0 +BAUDRATE=115200 +ENABLE_DEV_DPI=0 +LOAD_L2=JTAG +USE_SDVT_I2S=0 
-
-run-xcelium: $(TARGET_BUILD_DIR)/cds.lib $(TARGET_BUILD_DIR)/hdl.var $(TARGET_BUILD_DIR)/worklib  $(TARGET_BUILD_DIR)/boot $(TARGET_BUILD_DIR)/tcl_files $(TARGET_BUILD_DIR)/stdout $(TARGET_BUILD_DIR)/fs $(TARGET_BUILD_DIR)/waves
+run-xcelium: $(TARGET_BUILD_DIR)/cds.lib $(TARGET_BUILD_DIR)/hdl.var $(TARGET_BUILD_DIR)/worklib  $(TARGET_BUILD_DIR)/boot $(TARGET_BUILD_DIR)/tcl_files $(TARGET_BUILD_DIR)/stdout $(TARGET_BUILD_DIR)/fs $(TARGET_BUILD_DIR)/waves $(TARGET_BUILD_DIR)/libdpi.so
 	$(PULPRT_HOME)/bin/stim_utils.py --binary=$(TARGETS) --vectors=$(TARGET_BUILD_DIR)/vectors/stim.txt
 	$(PULPRT_HOME)/bin/plp_mkflash  --flash-boot-binary=$(TARGETS)  --stimuli=$(TARGET_BUILD_DIR)/vectors/qspi_stim.slm --flash-type=spi --qpi
 	$(PULPRT_HOME)/bin/slm_hyper.py  --input=$(TARGET_BUILD_DIR)/vectors/qspi_stim.slm  --output=$(TARGET_BUILD_DIR)/vectors/hyper_stim.slm
