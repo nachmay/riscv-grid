@@ -66,7 +66,7 @@ convert-to-xcelium:
 	         	echo "rm -rf worklib" >> $(BENDER_SIM_BUILD_DIR)/xcelium_compile.sh
 		 	echo "fi" >> $(BENDER_SIM_BUILD_DIR)/xcelium_compile.sh       
 		        echo "mkdir worklib" >> $(BENDER_SIM_BUILD_DIR)/xcelium_compile.sh 
-	                sed s/"if {\[catch { vlog \-incr \-sv"/"xmvlog -sv"/g $(BENDER_SIM_BUILD_DIR)/compile.tcl | \
+	                sed s/"if {\[catch { vlog \-incr \-sv"/"xmvlog +define+XCELIUM -sv"/g $(BENDER_SIM_BUILD_DIR)/compile.tcl | \
 			sed s/"+define+"/'\-define '/g | \
 			sed -E 's/"\+incdir\+([^"]+)"/-incdir \1/g' |\
 			sed s/"includes\""/includes/g |\

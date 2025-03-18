@@ -41,16 +41,28 @@ The change: changed the macro definition to 4 instead of 8
 Changes made to some file to make it work with Xcelium:
 
 
-Makfiles changes:
-
+Repository: PULP
 
 path: pulp/
 File: Makefile
 Lines: 61 -78, 150-179,246 - 251
-The change: added support for Xxcelium
+The change: added support for Xcelium
+Explanation: the code convert the file compile.tcl into an executable file "xcelium_compile.sh" which contains compilation and elaboration of the rtl with Xcelium.
+in addition, the code creates the files cds.lib and hdl.var with the desired content.
+we code also support running the regression tests in Xcelium.
 
 
+path:pulp/sim
+file:Makefile
+Lines: 49 - 54
+explenation: added support for xcelium clean as well as executing the file xcelium_compile.sh.
 
+repository: Pulp-Runtime
+path: pulp-runtime/rules/pulpos
+Lines: 361 - 375
+Explenation: added support to run Xcelium
+
+Repository: Regression_tests
 
 path:regression_tests/parallel_bare_tests/LU/golden
 File: Makefile
