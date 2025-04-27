@@ -81,7 +81,7 @@ pip install PrettyTable
 pip install pyyaml==5.1
 
 ```
-then run:
+then run from pulp directory:
 ```
 make test-fast-regressions-xcelium
 ```
@@ -101,8 +101,6 @@ git clone git@gitlab.vlsi.huji.cloud:freddy.gabbay/riscv-grid.git
 cd riscv-grid/pulp
 
 make checkout
-
-cp -p ../additinal_files/fpnew_wrapper.sv .bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/
 
 make scripts
 
@@ -165,7 +163,7 @@ pip install PrettyTable
 pip install pyyaml==5.1
 
 ```
-then run:
+then run from pulp directory:
 ```
 make test-fast-regressions
 ```
