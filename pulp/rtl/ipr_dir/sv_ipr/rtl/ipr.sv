@@ -38,6 +38,7 @@ module ipr #(
   logic fifo_almost_empty, fifo_almost_full;
   logic we, re;
   logic [31:0] fifo_data;
+  logic [31:0] fifo_data_del;
 
   logic read_gnt_fifo;
   logic empty_req;
@@ -45,13 +46,13 @@ module ipr #(
 
   assign empty_req = reg_offset_read[1] && ~reg_offset_read[0];
 
-  assign read_gnt_empty = read_if.req  && !read_inflight  && empty_req && !read_if_we;
+  assign read_gnt_empty = read_if.req  && !read_inflight  && empty_req && !read_if.we;
 
-  assign read_gnt_fifo  = read_if.req  && !read_inflight  && !fifo_empty && !read_if_we;
+  assign read_gnt_fifo  = read_if.req  && !read_inflight  && !fifo_empty && !read_if.we;
 
-  assign read_gnt_evt =  read_gnt_fifo || read_gnt_empty;
+  //assign read_gnt_evt =  read_gnt_fifo || read_gnt_empty;
 
-  //assign read_gnt_evt =  read_gnt_fifo;
+  assign read_gnt_evt =  read_gnt_fifo;
   //assign read_gnt_evt  = read_if.req  && !read_inflight ;
 
   assign write_gnt_evt = write_if.req && write_if.we && !write_inflight && !fifo_full;
@@ -59,17 +60,24 @@ module ipr #(
   assign we = write_if.req && write_if.we;
   assign re = read_gnt_dly && !reg_offset_read;
 
+/*
+  always_ff @(posedge r_clk or negedge r_rst_n) begin
+    if (!r_rst_n)
+      fifo_data_del <= '0;
+    else 
+      fifo_data_del <= fifo_data;
+  end
 
 
   always_comb begin
       case (reg_offset_read)
-          2'b00: read_if.rdata  = fifo_data;          // FIFO data port
+          2'b00: read_if.rdata  = fifo_data_del;          // FIFO data port
           2'b01: read_if.rdata = {31'b0, fifo_full}; // 1-bit full status
           2'b10: read_if.rdata  = {31'b0, fifo_empty};// 1-bit empty status
           default: read_if.rdata  = 32'hDEADBEEF;
       endcase
   end
-
+*/
 
 
   async_fifo  #(
@@ -88,7 +96,7 @@ module ipr #(
       .rclk(r_clk),
       .rrst_n(r_rst_n),
       .rinc(re),
-      .rdata(fifo_data),
+      .rdata(read_if.rdata),
       .rempty(fifo_empty),
       .arempty(fifo_almost_empty)
       //.error_flag(error_flag)

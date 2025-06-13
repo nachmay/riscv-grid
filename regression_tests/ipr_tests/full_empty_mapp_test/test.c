@@ -96,14 +96,14 @@ int main() {
         return -1;
     }
 
-    synch_barrier();
+    //synch_barrier();
 
     if (core_id == 1) {
         // Core 1 writes to Core 0 (via EAST IPR)
         volatile uint32_t *ipr_write = (volatile uint32_t *)(IPR_EAST_ADDR + IPR_DATA);
 
         // First, send how many words we're going to write
-        *ipr_write = TOTAL_WRITES;
+        //*ipr_write = TOTAL_WRITES;
 
         for (int written = 0; written < TOTAL_WRITES; written++) {
             uint32_t data = 0xAB000000 | written;
@@ -117,11 +117,11 @@ int main() {
         volatile uint32_t *ipr_empty = (volatile uint32_t *)(IPR_WEST_ADDR + IPR_EMPTY);
 
         // Wait for the header (number of words)
-        while ((*ipr_empty & 0x1) == 1);  // Wait until FIFO is not empty
-        uint32_t num_words = *ipr_read;
+        //while ((*ipr_empty & 0x1) == 1);  // Wait until FIFO is not empty
+        //uint32_t num_words = *ipr_read;
 
-        uint32_t read_data[num_words];  // Generous buffer
-        for (int i = 0; i < num_words; i++) {
+        uint32_t read_data[TOTAL_WRITES];  // Generous buffer
+        for (int i = 0; i < TOTAL_WRITES; i++) {
             //while ((*ipr_empty & 0x1) == 1);  // Wait for each data word
             read_data[i] = *ipr_read;
 /*
@@ -136,6 +136,6 @@ int main() {
         }
     }
 
-    synch_barrier();
+    //synch_barrier();
     return 0;
 }
