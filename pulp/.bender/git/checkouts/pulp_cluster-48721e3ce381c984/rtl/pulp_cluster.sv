@@ -259,6 +259,26 @@ module pulp_cluster
   //***************** SIGNALS DECLARATION ******************
   //********************************************************
    
+  localparam DIRECTIONS           = 4;
+
+  /////////////////////IPR interface////////////////// nachman 
+  IPR_WRITE_IF master_write_north_if[NB_CORES-1:0] (.clk(clk_i), .rst_n(rst_ni));
+  IPR_WRITE_IF master_write_south_if[NB_CORES-1:0] (.clk(clk_i), .rst_n(rst_ni));
+  IPR_WRITE_IF master_write_east_if[NB_CORES-1:0] (.clk(clk_i), .rst_n(rst_ni));
+  IPR_WRITE_IF master_write_west_if[NB_CORES-1:0] (.clk(clk_i), .rst_n(rst_ni));
+  
+  localparam int NUM_PORTS = NB_CORES * DIRECTIONS;
+  IPR_WRITE_IF master_write_if_b[NUM_PORTS-1:0] (.clk(clk_i), .rst_n(rst_ni)); //flatten the array 
+  //IPR_WRITE_IF master_write_if_b[NB_CORES][DIRECTIONS] (.clk(clk_i), .rst_n(rst_ni));
+
+
+  /*IPR_WRITE_IF write_north_if_router[NB_CORES] (.clk(clk_i), .rst_n(rst_ni));
+  IPR_WRITE_IF write_south_if_router[NB_CORES] (.clk(clk_i), .rst_n(rst_ni));
+  IPR_WRITE_IF write_east_if_router[NB_CORES] (.clk(clk_i), .rst_n(rst_ni));
+  IPR_WRITE_IF write_west_if_router[NB_CORES] (.clk(clk_i), .rst_n(rst_ni));
+  ///////////////////////////////////////////////////
+  */
+
     
   logic [NB_CORES-1:0]                fetch_enable_reg_int;
   logic [NB_CORES-1:0]                fetch_en_int;
@@ -852,6 +872,7 @@ module pulp_cluster
 
 
       core_region #(
+	.DIRECTIONS(DIRECTIONS),
         .CORE_TYPE_CL        ( CORE_TYPE_CL       ),
         .CORE_ID             ( i                  ),
         .ADDR_WIDTH          ( 32                 ),
@@ -895,6 +916,19 @@ module pulp_cluster
         .instr_r_rdata_i     ( instr_r_rdata[i]      ),
         .instr_r_valid_i     ( instr_r_valid[i]      ),
 
+	///////////////////IPR signals//////////////////////////
+	.write_north_if_f(master_write_north_if[i]),
+  	.write_south_if_f(master_write_south_if[i]),
+  	.write_east_if_f(master_write_east_if[i]),
+  	.write_west_if_f(master_write_west_if[i]),
+	
+  	.write_north_if_b(master_write_if_b[i*DIRECTIONS].master),
+  	.write_south_if_b(master_write_if_b[i*DIRECTIONS + 1].master),
+  	.write_east_if_b(master_write_if_b[i*DIRECTIONS + 2].master),
+  	.write_west_if_b(master_write_if_b[i*DIRECTIONS + 3].master),
+
+	////////////////////////////////////////////////////////
+	
         //debug unit bind
         .debug_req_i         ( s_core_dbg_irq[i]     ),
         //.debug_bus           ( s_debug_bus[i]        ),
@@ -925,6 +959,70 @@ module pulp_cluster
       );
     end
   endgenerate
+
+
+ipr_write_router #( .NB_CORES(NB_CORES), 
+	 	    .DIRECTIONS(DIRECTIONS),
+			.NUM_PORTS(NUM_PORTS)) 
+	ipr_router_i( 
+	.write_north_if_f_0(master_write_north_if[0]), //1D interface array [NB_CORES]
+	.write_north_if_f_1(master_write_north_if[1]), //1D interface array [NB_CORES]
+	.write_north_if_f_2(master_write_north_if[2]), //1D interface array [NB_CORES]
+	.write_north_if_f_3(master_write_north_if[3]), //1D interface array [NB_CORES]
+
+	/////////////////////////write out from core to routing to fellow cores if's/////////////////
+	.write_south_if_f_0(master_write_south_if[0]), //1D interface array [NB_CORES]
+	.write_south_if_f_1(master_write_south_if[1]), //1D interface array [NB_CORES]
+	.write_south_if_f_2(master_write_south_if[2]), //1D interface array [NB_CORES]
+	.write_south_if_f_3(master_write_south_if[3]), //1D interface array [NB_CORES]
+
+	.write_east_if_f_0(master_write_east_if[0]), //1D interface array [NB_CORES]
+	.write_east_if_f_1(master_write_east_if[1]), //1D interface array [NB_CORES]
+	.write_east_if_f_2(master_write_east_if[2]), //1D interface array [NB_CORES]
+	.write_east_if_f_3(master_write_east_if[3]), //1D interface array [NB_CORES]
+
+	.write_west_if_f_0(master_write_west_if[0]), //1D interface array [NB_CORES]
+	.write_west_if_f_1(master_write_west_if[1]), //1D interface array [NB_CORES]
+	.write_west_if_f_2(master_write_west_if[2]), //1D interface array [NB_CORES]
+	.write_west_if_f_3(master_write_west_if[3]), //1D interface array [NB_CORES]
+////////////////////////////////////////////////////////////////////////////////////////
+//
+///////////////////////////////write back interfaces from routing if's/////////
+
+	.write_if_b_0_south(master_write_if_b[1].master),
+	.write_if_b_1_south(master_write_if_b[DIRECTIONS + 1].master), 
+	.write_if_b_2_south(master_write_if_b[2*DIRECTIONS + 1].master), 
+	.write_if_b_3_south(master_write_if_b[3*DIRECTIONS + 1].master),
+
+	.write_if_b_0_north(master_write_if_b[0].master),
+	.write_if_b_1_north(master_write_if_b[DIRECTIONS].master), 
+	.write_if_b_2_north(master_write_if_b[2*DIRECTIONS].master), 
+	.write_if_b_3_north(master_write_if_b[3*DIRECTIONS].master),
+
+	.write_if_b_0_west(master_write_if_b[3].master),
+	.write_if_b_1_west(master_write_if_b[DIRECTIONS + 3].master), 
+	.write_if_b_2_west(master_write_if_b[2*DIRECTIONS + 3].master), 
+	.write_if_b_3_west(master_write_if_b[3*DIRECTIONS + 3].master),
+
+	.write_if_b_0_east(master_write_if_b[2].master),
+	.write_if_b_1_east(master_write_if_b[DIRECTIONS + 2].master), 
+	.write_if_b_2_east(master_write_if_b[2*DIRECTIONS + 2].master), 
+	.write_if_b_3_east(master_write_if_b[3*DIRECTIONS + 2].master)
+
+);
+
+ /////////////////////////////////////////////////////////////////////////////////
+  	/*.write_south_if_f(master_write_south_if[NB_CORES-1:0]),//1D interface array [NB_CORES]
+  	.write_east_if_f(master_write_east_if[NB_CORES-1:0]),//1D interface array [NB_CORES]
+  	.write_west_if_f(master_write_west_if[NB_CORES-1:0]),//1D interface array [NB_CORES]*/
+
+	//.write_if_b(master_write_if_b[NUM_PORTS-1:0]) //2D interface array [NB_CORES][DIRECTIONS]
+
+
+
+
+
+
 
 
 //**********************************************

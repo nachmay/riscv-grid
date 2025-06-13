@@ -1377,6 +1377,7 @@ xmvlog -sv \
     -incdir $ROOT/.bender/git/checkouts/cluster_interconnect-abcda71a83f4333c/rtl/peripheral_interco \
     -incdir $ROOT/.bender/git/checkouts/common_cells-f18d75f6d6d026a5/include \
     -incdir $ROOT/.bender/git/checkouts/cv32e40p-0a3884e05ea5a482/rtl/include \
+    -incdir $ROOT/rtl/ipr_dir/sv_ipr/rtl \
     "$ROOT/.bender/git/checkouts/pulp_cluster-48721e3ce381c984/rtl/core_region.sv" \
 
 
@@ -1573,6 +1574,44 @@ xmvlog -sv \
     "$ROOT/rtl/tb/jtag_pkg.sv" \
     "$ROOT/rtl/tb/pulp_tap_pkg.sv" \
     "$ROOT/rtl/tb/tb_pulp.sv" \
+
+
+
+
+#added changes for ipr
+
+xmvlog -sv \
+     -incdir $ROOT/rtl/includes \
+     -incdir $ROOT/rtl/ipr_dir \
+    -define TARGET_RTL \
+    -define TARGET_SIMULATION \
+    -define TARGET_TEST \
+    -define TARGET_VSIM \
+    "$ROOT/rtl/ipr_dir/read_write_interface.sv" \
+    "$ROOT/rtl/ipr_dir/ipr_fifo.sv" \
+    "$ROOT/rtl/ipr_dir/ipr_region.sv" \
+    "$ROOT/rtl/ipr_dir/ipr_write_router.sv" \
+
+
+
+xmvlog -sv \
+     -incdir $ROOT/rtl/includes \
+     -incdir $ROOT/rtl/ipr_dir/sv_ipr/rtl \
+    -define TARGET_RTL \
+    -define TARGET_SIMULATION \
+    -define TARGET_TEST \
+    -define TARGET_VSIM \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/fifomem.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/rptr_empty.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/sync_ptr.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/sync_r2w.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/sync_w2r.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/wptr_full.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/async_fifo.sv" \
+    "$ROOT/rtl/ipr_dir/sv_ipr/rtl/ipr.sv" \
+
+
+
 
 
 xmelab -timescale 1ps/1ps -access +rwc -warn_multiple_driver -nowarn NONPRT tb_pulp
