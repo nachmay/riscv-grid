@@ -638,7 +638,6 @@ module riscv_id_stage
     endcase; // case (alu_op_a_mux_sel)
   end
 
-
   always_comb begin : immediate_a_mux
     unique case (imm_a_mux_sel)
       IMMA_Z:      imm_a = imm_z_type;
@@ -656,19 +655,6 @@ module riscv_id_stage
       default:      operand_a_fw_id = regfile_data_ra_id;
     endcase; // case (operand_a_fw_mux_sel)
   end
-
-
-
-/*  // Debug: Log all signals in alu_operand_a_mux when data_req_ex_o=1
-  always @(posedge clk) begin
-    if (data_req_ex_o) begin
-      // synopsys translate_off
-      // Debug for operand_a_fw_mux
-      $display("%t [riscv_id_stage] operand_a_fw_mux: operand_a_fw_id=0x%08x, operand_a_fw_mux_sel=%0d, regfile_alu_wdata_fw_i=0x%08x, regfile_wdata_wb_i=0x%08x, regfile_data_ra_id=0x%08x",
-               $time()/1000, operand_a_fw_id, operand_a_fw_mux_sel, regfile_alu_wdata_fw_i, regfile_wdata_wb_i, regfile_data_ra_id);
-      // synopsys translate_on
-    end
-  end*/
 
   //////////////////////////////////////////////////////
   //   ___                                 _   ____   //

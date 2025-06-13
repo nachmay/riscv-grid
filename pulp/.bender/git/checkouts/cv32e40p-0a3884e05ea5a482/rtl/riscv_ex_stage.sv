@@ -221,17 +221,7 @@ module riscv_ex_stage
         regfile_alu_wdata_fw_o = csr_rdata_i;
     end
   end
-/*
-// Debug: Log ALU write port mux signals when regfile_alu_we_fw_o=1
-  always @(posedge clk) begin
-    if (regfile_alu_we_fw_o) begin
-      // synopsys translate_off
-      $display("%t [riscv_ex_stage] ALU write port: regfile_alu_wdata_fw_o=0x%08x, apu_valid=%b, apu_singlecycle=%b, apu_multicycle=%b, alu_en_i=%b, mult_en_i=%b, csr_access_i=%b, apu_en_i=%b, regfile_alu_we_i=%b, apu_result=0x%08x, alu_result=0x%08x, mult_result=0x%08x, csr_rdata_i=0x%08x",
-               $time()/1000, regfile_alu_wdata_fw_o, apu_valid, apu_singlecycle, apu_multicycle, alu_en_i, mult_en_i, csr_access_i, apu_en_i, regfile_alu_we_i, apu_result, alu_result, mult_result, csr_rdata_i);
-      // synopsys translate_on
-    end
-  end
-*/
+
   // LSU write port mux
   always_comb
   begin

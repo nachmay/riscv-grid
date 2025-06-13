@@ -70,7 +70,10 @@ module stream_register_tb #(
         }
     endclass
 
-   // program testbench ();
+    `ifndef XCELIUM
+    program testbench ();
+    `endif 
+
         logic[7:0] queue [$];
         // clocking outputs are DUT inputs and vice versa
         clocking cb @(posedge clk);
@@ -158,7 +161,9 @@ module stream_register_tb #(
 
             end
         end
-  //  endprogram
+  `ifndef XCELIUM
+    endprogram
+  `endif 
 
     testbench tb();
 endmodule

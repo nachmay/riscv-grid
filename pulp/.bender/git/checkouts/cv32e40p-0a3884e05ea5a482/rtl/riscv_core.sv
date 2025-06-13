@@ -934,7 +934,6 @@ module riscv_core
   assign wb_valid = lsu_ready_wb & apu_ready_wb;
 
 
-
   //////////////////////////////////////
   //        ____ ____  ____           //
   //       / ___/ ___||  _ \ ___      //

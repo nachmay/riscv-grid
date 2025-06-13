@@ -156,26 +156,6 @@ module core_region
   //***************** SIGNALS DECLARATION ******************
   //********************************************************
 
-
-
-  //added changes for the ipr
-
-  // Interfaces for ipr_region
-  IPR_WRITE_IF default_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_READ_IF  read_north_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_READ_IF  read_south_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_READ_IF  read_east_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_READ_IF  read_west_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_WRITE_IF write_north_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_WRITE_IF write_south_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_WRITE_IF write_east_if (.clk(clk_i), .rst_n(rst_ni));
-  IPR_WRITE_IF write_west_if (.clk(clk_i), .rst_n(rst_ni));
-
-
-  //end of changes for the ipr
-
-
-
   XBAR_DEMUX_BUS    s_core_bus();         // Internal interface between CORE       <--> DEMUX
   XBAR_PERIPH_BUS   periph_demux_bus();   // Internal interface between CORE_DEMUX <--> PERIPHERAL DEMUX
 
@@ -264,14 +244,14 @@ module core_region
         .instr_gnt_i           ( instr_gnt_i              ),
         .instr_rvalid_i        ( instr_r_valid_i          ),
 
-        .data_addr_o           ( s_core_bus.Master.add           ),
-        .data_wdata_o          ( s_core_bus.Master.wdata         ),
-        .data_we_o             ( s_core_bus.Master.we            ),
-        .data_req_o            ( s_core_bus.Master.req           ),
-        .data_be_o             ( s_core_bus.Master.be            ),
-        .data_rdata_i          ( s_core_bus.Master.r_rdata       ),
-        .data_gnt_i            ( s_core_bus.Master.gnt           ),
-        .data_rvalid_i         ( s_core_bus.Master.r_valid       ),
+        .data_addr_o           ( s_core_bus.add           ),
+        .data_wdata_o          ( s_core_bus.wdata         ),
+        .data_we_o             ( s_core_bus.we            ),
+        .data_req_o            ( s_core_bus.req           ),
+        .data_be_o             ( s_core_bus.be            ),
+        .data_rdata_i          ( s_core_bus.r_rdata       ),
+        .data_gnt_i            ( s_core_bus.gnt           ),
+        .data_rvalid_i         ( s_core_bus.r_valid       ),
 
         .irq_i                 ( irq_req_i                ),
         .irq_id_i              ( irq_id_i                 ),
@@ -445,48 +425,6 @@ module core_region
   assign perf_counters[4] = tcdm_data_master.req & (~tcdm_data_master.gnt);  // Cycles lost due to contention
 
 
-
-  //added changes for the ipr
-
-
-  //********************************************************
-  //********************* ipr region ***********************
-  //********************************************************
-
-  // Instantiate ipr_region
-  ipr_region ipr_region_i (
-    .clk                   ( clk_i            ),
-    .rst_n                 ( rst_ni            ),
-    .data_addr_i           ( s_core_bus.Slave.add    ),
-    .data_wdata_i          ( s_core_bus.Slave.wdata  ),
-    .data_we_i             ( s_core_bus.Slave.we     ),
-    .data_req_i            ( s_core_bus.Slave.req    ),
-    .data_be_i             ( s_core_bus.Slave.be     ),
-    .data_rdata_o          ( s_core_bus.Slave.r_rdata), // Connected below
-    .data_gnt_o            ( s_core_bus.Slave.gnt    ),
-    .data_rvalid_o         ( s_core_bus.Slave.r_valid                  ),
-
-    .default_if            ( default_if.master  ),
-    .read_north_if         ( read_north_if.master ),
-    .read_south_if         ( read_south_if.master ),
-    .read_east_if          ( read_east_if.master ),
-    .read_west_if          ( read_west_if.master ),
-    .write_north_if        ( write_north_if.master ),
-    .write_south_if        ( write_south_if.master ),
-    .write_east_if         ( write_east_if.master ),
-    .write_west_if         ( write_west_if.master )
-  );
-
-
-  //end of changes for the ipr
-
-
-
-
-
-
-
-
   //********************************************************
   //****** DEMUX TO TCDM AND PERIPHERAL INTERCONNECT *******
   //********************************************************
@@ -504,34 +442,16 @@ module core_region
   `ifdef REMAP_ADDRESS
     .base_addr_i        (  base_addr_i                ),
 `endif
-
-  //added changes for the ipr
-
-
-    //.data_req_i         (  s_core_bus.req             ),
-    //.data_add_i         (  s_core_bus.add             ),
-    //.data_wen_i         ( ~s_core_bus.we              ), //inverted when using OR10N
-    //.data_wdata_i       (  s_core_bus.wdata           ),
-    //.data_be_i          (  s_core_bus.be              ),
-    //.data_gnt_o         (  s_core_bus.gnt             ),
-    //.data_r_gnt_i       (  s_core_bus.r_gnt           ),
-    //.data_r_valid_o     (  s_core_bus.r_valid         ),
-    //.data_r_opc_o       (                             ),
-    //.data_r_rdata_o     (  s_core_bus.r_rdata         ),
-
-    .data_req_i         (  default_if.slave.req            ),
-    .data_add_i         (  default_if.slave.addr             ),
-    .data_wen_i         ( ~default_if.slave.we             ), //inverted when using OR10N
-    .data_wdata_i       (  default_if.slave.wdata          ),
-    .data_be_i          (  default_if.slave.be              ),
-    .data_gnt_o         (  default_if.slave.gnt             ),
-    .data_r_gnt_i       (  s_core_bus.r_gnt           ),// need to findout why we needs it
-    .data_r_valid_o     (  default_if.slave.rvalid        ),
+    .data_req_i         (  s_core_bus.req             ),
+    .data_add_i         (  s_core_bus.add             ),
+    .data_wen_i         ( ~s_core_bus.we              ), //inverted when using OR10N
+    .data_wdata_i       (  s_core_bus.wdata           ),
+    .data_be_i          (  s_core_bus.be              ),
+    .data_gnt_o         (  s_core_bus.gnt             ),
+    .data_r_gnt_i       (  s_core_bus.r_gnt           ),
+    .data_r_valid_o     (  s_core_bus.r_valid         ),
     .data_r_opc_o       (                             ),
-    .data_r_rdata_o     (  default_if.slave.rdata        ),
-
-  //end of changes for the ipr
-
+    .data_r_rdata_o     (  s_core_bus.r_rdata         ),
 
     .data_req_o_SH      (  tcdm_data_master.req       ),
     .data_add_o_SH      (  tcdm_data_master.add       ),
@@ -768,119 +688,4 @@ module core_region
   end
 //synopsys translate_on
 
-
-
-
-
-
-/*
-// synchroneous fifo
-ipr_fifo fifo_north_i (
-  .clk                   ( clk_i            ),
-  .rst_n                 ( rst_ni            ),
-  .read_if               ( read_north_if.slave ),
-  .write_if              ( write_north_if.slave )
-);
-
-ipr_fifo fifo_south_i (
-  .clk                   ( clk_i            ),
-  .rst_n                 ( rst_ni            ),
-  .read_if               ( read_south_if.slave ),
-  .write_if              ( write_south_if.slave )
-);
-
-ipr_fifo fifo_east_i (
-  .clk                   ( clk_i            ),
-  .rst_n                 ( rst_ni            ),
-  .read_if               ( read_east_if.slave ),
-  .write_if              ( write_east_if.slave )
-);
-
-ipr_fifo fifo_west_i (
-  .clk                   ( clk_i           ),
-  .rst_n                 ( rst_ni            ),
-  .read_if               ( read_west_if.slave ),
-  .write_if              ( write_west_if.slave )
-);
-*/
-
-// asynchroneous fifo
-async_fifo_wrapper fifo_north_i (
-  .w_clk                   ( clk_i            ),
-  .w_rst_n                 ( rst_ni            ),
-  .r_clk                   ( clk_i            ),
-  .r_rst_n                 ( rst_ni            ),
-  .read_if               ( read_north_if.slave ),
-  .write_if              ( write_north_if.slave )
-);
-
-async_fifo_wrapper fifo_south_i (
-  .w_clk                   ( clk_i            ),
-  .w_rst_n                 ( rst_ni            ),
-  .r_clk                   ( clk_i            ),
-  .r_rst_n                 ( rst_ni            ),
-  .read_if               ( read_south_if.slave ),
-  .write_if              ( write_south_if.slave )
-);
-
-async_fifo_wrapper fifo_east_i (
-  .w_clk                   ( clk_i            ),
-  .w_rst_n                 ( rst_ni            ),
-  .r_clk                   ( clk_i            ),
-  .r_rst_n                 ( rst_ni            ),
-  .read_if               ( read_east_if.slave ),
-  .write_if              ( write_east_if.slave )
-);
-
-async_fifo_wrapper fifo_west_i (
-  .w_clk                   ( clk_i            ),
-  .w_rst_n                 ( rst_ni            ),
-  .r_clk                   ( clk_i            ),
-  .r_rst_n                 ( rst_ni            ),
-  .read_if               ( read_west_if.slave ),
-  .write_if              ( write_west_if.slave )
-);
-
-
-
-/*
-// Debug: Log s_core_bus.add for every request
-always @(posedge clk_i) begin
-  if (s_core_bus.req) begin
-    // synopsys translate_off
-    $display("%t [core_region cluster0_core] Core request: addr=0x%08x, we=%b, wdata=0x%08x",
-             $time()/1000, s_core_bus.add, s_core_bus.we, s_core_bus.wdata);
-    // synopsys translate_on
-  end
-end
-*/
-
-/*
-// Debug: Log core_demux responses
-always @(posedge clk_int) begin
-  if (default_if.gnt || default_if.rvalid) begin
-    // synopsys translate_off
-    $display("%t [core_region cluster0_core] Core_demux response: addr=0x%08x, gnt=%b, rvalid=%b, rdata=0x%08x",
-             $time()/1000, default_if.addr, default_if.gnt, default_if.rvalid, default_if.rdata);
-    // synopsys translate_on
-  end
-end
-logic is_ipr;
-assign is_ipr = (s_core_bus.add[27:24] == 4'b1001) && s_core_bus.req;
-// Debug: Log multiplexing
-always @(posedge clk_int) begin
-  if (s_core_bus.req) begin
-    // synopsys translate_off
-    $display("%t [core_region cluster0_core] Request: addr=0x%08x, is_ipr=%b", $time()/1000, s_core_bus.add, is_ipr);
-    // synopsys translate_on
-  end
-  if (s_core_bus.gnt || s_core_bus.r_valid) begin
-    // synopsys translate_off
-    $display("%t [core_region cluster0_core] Response: rdata=0x%08x, gnt=%b, rvalid=%b, is_ipr=%b, source=%s",
-             $time()/1000, s_core_bus.r_rdata, s_core_bus.gnt, s_core_bus.r_valid, is_ipr,
-             is_ipr ? "ipr_region" : "core_demux");
-    // synopsys translate_on
-  end
-end
-*/
 endmodule

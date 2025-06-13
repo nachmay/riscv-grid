@@ -1152,17 +1152,6 @@ module riscv_alu
 
   assign ready_o = div_ready;
 
-/*// Debug: Log all signals contributing to result_o when regfile_alu_we_fw_o=1 and alu_en_i=1
-  always @(posedge clk) begin
-
-      // synopsys translate_off
-      $display("%t [riscv_ex_stage] ALU result_o: result_o=0x%08x, operator_i=%0d, operand_a_i=0x%08x, operand_b_i=0x%08x, shift_result=0x%08x, bextins_result=0x%08x, bclr_result=0x%08x, bset_result=0x%08x, reverse_result=0x%08x, pack_result=0x%08x, result_minmax=0x%08x, fp_canonical_nan=0x%08x, adder_result=0x%08x, is_clpx_i=%b, clip_result=0x%08x, cmp_result=0x%0h, comparison_result_o=%b, bitop_result=0x%0h, result_div=0x%08x, fclass_result=0x%08x, f_sign_inject_result=0x%08x, minmax_is_fp_special=%b",
-               $time()/1000, result_o, operator_i, operand_a_i, operand_b_i, shift_result, bextins_result, bclr_result, bset_result, reverse_result, pack_result, result_minmax, fp_canonical_nan, adder_result, is_clpx_i, clip_result, cmp_result, comparison_result_o, bitop_result, result_div, fclass_result, f_sign_inject_result, minmax_is_fp_special);
-      // synopsys translate_on
-  end
-*/
-
-
 endmodule
 
 module alu_ff

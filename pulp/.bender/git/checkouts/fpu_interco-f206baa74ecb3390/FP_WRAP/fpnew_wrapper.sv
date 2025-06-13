@@ -137,8 +137,7 @@ module fpnew_wrapper
                        '{default: C_LAT_NONCOMP}, // NONCOMP
                        '{default: C_LAT_CONV}},   // CONV
           UnitTypes: '{'{default: fpnew_pkg::MERGED}, // ADDMUL
-                       //algrin '{default: C_DIV},               // DIVSQRT
-		       '{default: fpnew_pkg::DISABLED}, //algrin 
+                       '{default: C_DIV},               // DIVSQRT
                        '{default: fpnew_pkg::PARALLEL}, // NONCOMP
                        '{default: fpnew_pkg::MERGED}},  // CONV
           PipeConfig: fpnew_pkg::BEFORE

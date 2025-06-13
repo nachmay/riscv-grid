@@ -402,13 +402,6 @@ module riscv_load_store_unit
               if(data_err_i) begin
                 lsu_ready_ex_o = 1'b1;
               end
-	      
-/*
-      		// synopsys translate_off
-      		$display("%t [load_store] WAIT_RVALID: data_gnt_i=%b, data_req_ex_i=%b",
-               $time()/1000, data_gnt_i, data_req_ex_i);
-      		// synopsys translate_on
-  */    		
               NS = IDLE;
             end
           end else begin
@@ -431,11 +424,6 @@ module riscv_load_store_unit
           if (ex_valid_i) begin
             // we are done and can go back to idle
             // the data is safely stored already
-            /*// synopsys translate_off
-      	    $display("%t [load_store] WAIT_RVALID_EX_STALL: data_gnt_i=%b, data_req_ex_i=%b",
-            $time()/1000, data_gnt_i, data_req_ex_i);
-      	    // synopsys translate_on*/
-
             NS = IDLE;
           end else begin
             // we have to wait until ex_stall is deasserted
@@ -454,21 +442,11 @@ module riscv_load_store_unit
       begin
         // wait for us to be unstalled and then change back to IDLE state
         if (ex_valid_i) begin
-            /*// synopsys translate_off
-      	    $display("%t [load_store] IDLE_EX_STALL: data_gnt_i=%b, data_req_ex_i=%b",
-            $time()/1000, data_gnt_i, data_req_ex_i);
-      	    // synopsys translate_on*/
-
           NS = IDLE;
         end
       end
 
       default: begin
-            /*// synopsys translate_off
-      	    $display("%t [load_store] IDLE_EX_STALL/default: data_gnt_i=%b, data_req_ex_i=%b",
-            $time()/1000, data_gnt_i, data_req_ex_i);
-      	    // synopsys translate_on*/
-
         NS = IDLE;
       end
     endcase
