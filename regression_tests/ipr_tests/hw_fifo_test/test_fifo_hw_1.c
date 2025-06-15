@@ -43,7 +43,7 @@ int main() {
         }
     }
 
-    else if (core_id == 0) {
+    if (core_id == 0) {
         // Reader: dequeue via memory-mapped IPR_WEST_ADDR
         for (int i = 0; i < NUM_WORDS; i++) {
             uint32_t val = *deq_ptr;

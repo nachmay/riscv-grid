@@ -8,7 +8,7 @@
 #define BASE_TCDM 0x10008000
 #define NUM_CORES 4
 #define NUM_DIRECTIONS 4
-#define NUM_OPERATIONS 16
+#define NUM_WORDS 32
 #define FIFO_STRIDE (sizeof(fifo_t))
 
 typedef struct {
@@ -102,21 +102,24 @@ int main() {
         read_fifo->rear  = 0;
     }
 
-    static uint32_t values[NUM_OPERATIONS];
-    for (int i = 0; i < NUM_OPERATIONS; i++)
-        values[i] = 0xCAFE0000 | i;
+    static uint32_t values[NUM_WORDS];
+    if (core_id == writer_core) {
+        for (int i = 0; i < NUM_WORDS; i++) {
+            values[i] = 0xDEAD0000 | (core_id << 8) | i;
+        }
+    }
 
     synch_barrier();
     perf_begin();
 
     if (core_id == writer_core) {
-        for (int i = 0; i < NUM_OPERATIONS; i++) {
+        for (int i = 0; i < NUM_WORDS; i++) {
             enqueue(write_fifo, values[i]);
         }
     }
 
     if (core_id == reader_core) {
-        for (int i = 0; i < NUM_OPERATIONS; i++) {
+        for (int i = 0; i < NUM_WORDS; i++) {
             uint32_t val = dequeue(read_fifo);
         }
     }
