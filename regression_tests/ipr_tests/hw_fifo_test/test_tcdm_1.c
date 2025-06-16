@@ -8,7 +8,9 @@
 #define BASE_TCDM 0x10008000
 #define NUM_CORES 4
 #define NUM_DIRECTIONS 4
-#define NUM_WORDS 32
+#define NUM_WORDS_STACK 32
+#define NUM_WORDS 1024
+#define NUM_ITER 32
 #define FIFO_STRIDE (sizeof(fifo_t))
 
 typedef struct {
@@ -32,10 +34,10 @@ bool is_full(fifo_t *fifo) {
     return next_rear == fifo->front;
 }
 
-void enqueue(fifo_t *fifo, uint32_t i) {
+void enqueue(fifo_t *fifo, uint32_t val) {
     while (is_full(fifo));
-    //fifo->data[fifo->rear] = val;
-    fifo->data[fifo->rear] =  0xDEAD0000 | (1 << 8) | i;
+    fifo->data[fifo->rear] = val;
+    //fifo->data[fifo->rear] =  0xDEAD0000 | (1 << 8) | i;
     fifo->rear++;
     if (fifo->rear == MAX_SIZE) fifo->rear = 0;
 }
@@ -103,20 +105,29 @@ int main() {
         read_fifo->rear  = 0;
     }
 
-    static uint32_t values[NUM_WORDS];
+    volatile uint32_t values[NUM_WORDS_STACK];
     if (core_id == writer_core) {
-        for (int i = 0; i < NUM_WORDS; i++) {
+        for (int i = 0; i < NUM_WORDS_STACK; i++) {
             values[i] = 0xDEAD0000 | (core_id << 8) | i;
         }
     }
 
     synch_barrier();
     perf_begin();
-
+/*
     if (core_id == writer_core) {
         for (int i = 0; i < NUM_WORDS; i++) {
             //enqueue(write_fifo, values[i]);
             enqueue(write_fifo, i);
+        }
+    }
+*/
+    if (core_id == writer_core) {
+        // Writer: enqueue via memory-mapped IPR_EAST_ADDR
+        for (int iter = 0; iter < NUM_ITER; iter++) {
+            for (int i = 0; i < NUM_WORDS_STACK; i++) {
+                enqueue(write_fifo, values[i]);
+            }
         }
     }
 
