@@ -5,7 +5,7 @@
 module fifomem #(
     parameter int DATASIZE = 8,     // Memory data word width
     parameter int ADDRSIZE = 4,     // Number of mem address bits
-    parameter string FALLTHROUGH = "TRUE" // First word fall-through
+    parameter bit FALLTHROUGH = 1 // First word fall-through
 ) (
     input  wire logic                wclk,
     input  wire logic                wclken,
@@ -29,7 +29,7 @@ module fifomem #(
     end
 
     generate
-        if (FALLTHROUGH == "TRUE") begin : fallthrough
+        if (FALLTHROUGH) begin : fallthrough
             assign rdata = mem[raddr];
         end else begin : registered_read
             always_ff @(posedge rclk) begin

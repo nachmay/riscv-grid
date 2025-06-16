@@ -5,7 +5,7 @@
 module ipr #(
     parameter int DSIZE = 8,            // Data width (int for SV)
     parameter int ASIZE = 4,            // Address size (FIFO depth = 2^ASIZE)
-    parameter string FALLTHROUGH = "TRUE", // First word fall-through (string type)
+    parameter bit FALLTHROUGH = 1, // First word fall-through (string type)
     parameter int WATCHDOG_LIMIT = 100,  // Cycles without rinc to trigger flush
     parameter int BULK_NUMBER = 10
 ) (  input  logic        w_clk,

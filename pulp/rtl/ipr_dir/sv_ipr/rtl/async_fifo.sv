@@ -106,7 +106,10 @@ endmodule
 module async_fifo #(
     parameter int DSIZE = 8,
     parameter int ASIZE = 4,
-    parameter string FALLTHROUGH = "TRUE"
+    parameter bit FALLTHROUGH = 1,
+    parameter int WATCHDOG_LIMIT = 100,  // Cycles without rinc to trigger flush
+    parameter int BULK_NUMBER = 10
+
 ) (
     input  wire logic             wclk,
     input  wire logic             wrst_n,

@@ -835,8 +835,8 @@ ipr_fifo fifo_west_i (
 // asynchroneous fifo
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
-   .FALLTHROUGH ("TRUE"), // First word fall-through (string type)
+   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
 )  fifo_north_i (
@@ -852,8 +852,8 @@ ipr #(
 
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
-   .FALLTHROUGH ("TRUE"), // First word fall-through (string type)
+   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
 )fifo_south_i (
@@ -868,8 +868,8 @@ ipr #(
 
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
-   .FALLTHROUGH ("TRUE"), // First word fall-through (string type)
+   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
 )fifo_east_i (
@@ -884,8 +884,8 @@ ipr #(
 
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
-   .FALLTHROUGH ("TRUE"), // First word fall-through (string type)
+   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
 )fifo_west_i (

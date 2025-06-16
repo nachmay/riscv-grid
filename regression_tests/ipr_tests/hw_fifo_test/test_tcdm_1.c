@@ -32,9 +32,10 @@ bool is_full(fifo_t *fifo) {
     return next_rear == fifo->front;
 }
 
-void enqueue(fifo_t *fifo, uint32_t val) {
+void enqueue(fifo_t *fifo, uint32_t i) {
     while (is_full(fifo));
-    fifo->data[fifo->rear] = val;
+    //fifo->data[fifo->rear] = val;
+    fifo->data[fifo->rear] =  0xDEAD0000 | (1 << 8) | i;
     fifo->rear++;
     if (fifo->rear == MAX_SIZE) fifo->rear = 0;
 }
@@ -114,7 +115,8 @@ int main() {
 
     if (core_id == writer_core) {
         for (int i = 0; i < NUM_WORDS; i++) {
-            enqueue(write_fifo, values[i]);
+            //enqueue(write_fifo, values[i]);
+            enqueue(write_fifo, i);
         }
     }
 

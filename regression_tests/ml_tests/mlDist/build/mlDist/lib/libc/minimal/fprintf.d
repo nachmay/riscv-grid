@@ -1,0 +1,11 @@
+/project/tsmc16/users/iday/ws/git/riscv-grid/regression_tests/ml_tests/mlDist/build/mlDist/lib/libc/minimal/fprintf.o: \
+ /project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/lib/libc/minimal/fprintf.c \
+ /project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/include/chips/pulp/config.h \
+ /project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/include/archi/pulp_defs.h \
+ /project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/lib/libc/minimal/include/stdio.h
+
+/project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/include/chips/pulp/config.h:
+
+/project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/include/archi/pulp_defs.h:
+
+/project/tsmc16/users/iday/ws/git/riscv-grid/pulp-runtime/lib/libc/minimal/include/stdio.h:
