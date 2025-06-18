@@ -1,0 +1,1566 @@
+/* */
+/*###############################################################################*/
+/*#                                                    */
+/*#        Technology     : TSMC 16nm CMOS Logic FinFet (FFC) HKMG*/
+/*#        Memory Type    : TSMC 16nm FFC Two Port Register File with d130 bit cell*/
+/*#        Library Name   : ts6n16ffcllsvta8x32m1fw (user specify : ts6n16ffcllsvta8x32m1fw)*/
+/*#        Library Version: 170a*/
+/*#        Generated Time : 2025/06/18, 13:10:29*/
+/*###############################################################################*/
+/*# STATEMENT OF USE                                                             */
+/*#                                                                              */
+/*#  This information contains confidential and proprietary information of TSMC. */
+/*# No part of this information may be reproduced, transmitted, transcribed,     */
+/*# stored in a retrieval system, or translated into any human or computer       */
+/*# language, in any form or by any means, electronic, mechanical, magnetic,     */
+/*# optical, chemical, manual, or otherwise, without the prior written permission*/
+/*# of TSMC. This information was prepared for informational purpose and is for  */
+/*# use by TSMC's customers only. TSMC reserves the right to make changes in the */
+/*# inforrmation at any time and without notice.                                 */
+/**/
+/*###############################################################################*/
+/*#*Template Version : S_03_44602***************************************************************/
+/*#**********************************************************************************************/
+
+
+
+library(ts6n16ffcllsvta8x32m1fw_ssgnp0p675vm40c) {
+    technology (cmos) ;
+    delay_model         : table_lookup ;
+    date                : "2025/06/18, 13:10:29" ;
+    comment             : "Copyright TSMC" ;
+    revision            : v1.0 ;
+    simulation          : true ;
+    nom_process         : 1 ;
+    nom_temperature     : -40.000000 ;
+    nom_voltage         : 0.675000 ;
+
+    voltage_map(VDD, 0.675000);  
+    voltage_map(VSS, 0.0);
+    operating_conditions("ssgnp0p675vm40c"){
+        process     : 1 ;
+        temperature : -40.000000 ;
+        voltage     : 0.675000 ;
+        tree_type   : "balanced_tree" ;
+    }
+    default_operating_conditions    : ssgnp0p675vm40c ;
+    default_fanout_load             : 1 ;
+    default_inout_pin_cap           : 0.0 ;
+    default_input_pin_cap           : 1.0 ;
+    default_output_pin_cap          : 0.0 ;
+    default_cell_leakage_power      : 0.0 ;
+    default_leakage_power_density   : 0.0 ;
+    
+    slew_lower_threshold_pct_rise   :  10 ;
+    slew_upper_threshold_pct_rise   :  90 ;
+    slew_derate_from_library        : 1.00 ;
+    input_threshold_pct_fall        : 50 ;
+    output_threshold_pct_fall       : 50 ;
+    input_threshold_pct_rise        : 50 ;
+    output_threshold_pct_rise       : 50 ;
+    slew_lower_threshold_pct_fall   : 10 ;
+    slew_upper_threshold_pct_fall   : 90 ;
+    k_volt_cell_leakage_power       : 0.0 ;
+    k_temp_cell_leakage_power       : 0.0 ;
+    k_process_cell_leakage_power    : 0.0 ;
+    k_volt_internal_power           : 0.0 ;
+    k_temp_internal_power           : 0.0 ;
+    k_process_internal_power        : 0.0 ;
+
+    capacitive_load_unit (1,pf) ;
+    voltage_unit : "1V" ;
+    current_unit : "1uA" ;
+    time_unit : "1ns" ;
+    leakage_power_unit : "1uW" ;
+    pulling_resistance_unit : "1kohm" ;
+    library_features(report_delay_calculation) ;
+    library_features(report_power_calculation) ;
+    define_cell_area (pad_drivers,pad_driver_sites) ;
+    
+    input_voltage(cmos) {
+        vil : 0.3 * VDD ;
+        vih : 0.7 * VDD ;
+        vimin : -0.5 ;
+        vimax : VDD + 0.5 ;
+    }
+    input_voltage(cmos_schmitt) {
+         vil : 0.3 * VDD ;
+         vih : 0.7 * VDD ;
+         vimin : -0.5 ;
+         vimax : VDD + 0.5 ;
+    }
+    input_voltage(schmitt) {
+         vil : 0.3 * VDD ;
+         vih : 0.7 * VDD ;
+         vimin : -0.5 ;
+         vimax : VDD + 0.5 ;
+    }
+    input_voltage(ttl) {
+         vil : 0.8 ;
+         vih : 2.0 ;
+         vimin : -0.5 ;
+         vimax : VDD + 0.5 ;
+    }
+    input_voltage(ttl_schmitt) {
+         vil : 0.8 ;
+         vih : 2.0 ;
+         vimin : -0.5 ;
+         vimax : VDD + 0.5 ;
+    }
+    input_voltage(pci) {
+         vil : 0.8 ;
+         vih : 2.0 ;
+         vimin : -0.5 ;
+         vimax : VDD + 0.5 ;
+    }
+    output_voltage(cmos) {
+         vol : 0.3 * VDD ;
+         voh : 0.7 * VDD ;
+         vomin : -0.5 ;
+         vomax : VDD + 0.5 ;
+    }
+    output_voltage(cmos_schmitt) {
+         vol : 0.3 * VDD ;
+         voh : 0.7 * VDD ;
+         vomin : -0.5 ;
+         vomax : VDD + 0.5 ;
+    }
+    output_voltage(schmitt) {
+         vol : 0.3 * VDD ;
+         voh : 0.7 * VDD ;
+         vomin : -0.5 ;
+         vomax : VDD + 0.5 ;
+    }
+    output_voltage(ttl) {
+         vol : 0.8 ;
+         voh : 2.0 ;
+         vomin : -0.5 ;
+         vomax : VDD + 0.5 ;
+    }
+    output_voltage(ttl_schmitt) {
+         vol : 0.8 ;
+         voh : 2.0 ;
+         vomin : -0.5 ;
+         vomax : VDD + 0.5 ;
+    }
+    output_voltage(pci) {
+         vol : 0.8 ;
+         voh : 2.0 ;
+         vomin : -0.5 ;
+         vomax : VDD + 0.5 ;
+    }
+
+    /* LIBRARY_DEFINES */
+    /* LIBRARY_ATTRIBUTE */
+    define(functional_peak_current, cell, float);
+    lu_table_template (clktree_constraint_template) {
+         variable_1 : input_net_transition ;
+         index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+    } 
+    lu_table_template (clktran_constraint_template) {
+         variable_1 : constrained_pin_transition ;
+         index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+    }
+    lu_table_template (asyntran_constraint_template) {
+         variable_1 : constrained_pin_transition ;
+         index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+    }
+    lu_table_template (sram_load_template) {
+         variable_1 : total_output_net_capacitance ;
+         index_1 ( "0.002000, 0.024900, 0.052700, 0.108400, 0.219700" ) ;
+    }
+    lu_table_template (sig2sram_constraint_template) {
+         variable_1 : related_pin_transition ;
+         variable_2 : constrained_pin_transition ;
+         index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+         index_2 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+    }
+    lu_table_template (sig2sram_delay_template) {
+         variable_1 : input_net_transition ;
+         variable_2 : total_output_net_capacitance ;
+         index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+         index_2 ( "0.002000, 0.024900, 0.052700, 0.108400, 0.219700" ) ;
+    } 
+    lu_table_template (asig2sram_delay_template) {
+         variable_1 : input_net_transition ;
+         variable_2 : total_output_net_capacitance ;
+         index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" ) ;
+         index_2 ( "0.002000, 0.024900, 0.052700, 0.108400, 0.219700" ) ;
+    }
+    power_lut_template(sram_power_template) {
+         variable_1 : total_output_net_capacitance ;
+         index_1 ( "0.002000, 0.024900, 0.052700, 0.108400, 0.219700" ) ;
+    }
+    lu_table_template (waveform_template_name) {
+        variable_1 : input_net_transition;
+        variable_2 : normalized_voltage;
+        index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" );
+        index_2 ( "0.000000, 0.065000, 0.215835, 0.342510, 0.470272, 0.587447, 0.755671, 0.920547, 0.942784, 0.960506, 0.974146, 0.984284, 0.995449, 1.000000" );
+    }
+    /* LIBRARY_TEMPLATE */
+
+    normalized_driver_waveform (waveform_template_name) {
+        index_1 ( "0.016000, 0.070000, 0.143000, 0.289000, 0.580000" );
+        index_2 ( "0.000000, 0.065000, 0.215835, 0.342510, 0.470272, 0.587447, 0.755671, 0.920547, 0.942784, 0.960506, 0.974146, 0.984284, 0.995449, 1.000000" );
+        values ( \
+              "0.000000, 0.001300, 0.004317, 0.006850, 0.009405, 0.011749, 0.015113, 0.018411, 0.018856, 0.019210, 0.019483, 0.019686, 0.019909, 0.020000",\
+              "0.000000, 0.005687, 0.018886, 0.029970, 0.041149, 0.051402, 0.066121, 0.080548, 0.082494, 0.084044, 0.085238, 0.086125, 0.087102, 0.087500",\
+              "0.000000, 0.011619, 0.038581, 0.061224, 0.084061, 0.105006, 0.135076, 0.164548, 0.168523, 0.171690, 0.174129, 0.175941, 0.177936, 0.178750",\
+              "0.000000, 0.023481, 0.077970, 0.123732, 0.169886, 0.212215, 0.272986, 0.332548, 0.340581, 0.346983, 0.351910, 0.355573, 0.359606, 0.361250",\
+              "0.000000, 0.047125, 0.156480, 0.248320, 0.340947, 0.425899, 0.547862, 0.667397, 0.683518, 0.696367, 0.706256, 0.713606, 0.721700, 0.725000"\
+               );
+    }
+
+
+
+    type (AA_2_0) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 3 ;
+        bit_from  : 2 ;
+        bit_to    : 0 ;
+        downto    : true ;
+    }
+    
+    type (AB_2_0) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 3 ;
+        bit_from  : 2 ;
+        bit_to    : 0 ;
+        downto    : true ;
+    }
+    
+    type (D_31_0) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 32 ;
+        bit_from  : 31 ;
+        bit_to    : 0 ;
+        downto    : true ;
+    }
+    type (BWEB_31_0) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 32 ;
+        bit_from  : 31 ;
+        bit_to    : 0 ;
+        downto    : true ;
+    }
+
+    
+    type (Q_31_0) {
+        base_type : array ;
+        data_type : bit ;
+        bit_width : 32 ;
+        bit_from  : 31 ;
+        bit_to    : 0 ;
+        downto    : true ;
+    }
+    
+    
+   type (RCT_1_0) {
+        base_type : array;
+        data_type : bit;
+        bit_width : 2;
+        bit_from  : 1;
+        bit_to    : 0;
+        downto    : true;
+    }
+   type (WCT_1_0) {
+        base_type : array;
+        data_type : bit;
+        bit_width : 2;
+        bit_from  : 1;
+        bit_to    : 0;
+        downto    : true;
+    }
+   type (KP_2_0) {
+        base_type : array;
+        data_type : bit;
+        bit_width : 3;
+        bit_from  : 2;
+        bit_to    : 0;
+        downto    : true;
+    }
+
+
+    
+cell(TS6N16FFCLLSVTA8X32M1FW) {
+    is_macro_cell : true;
+    memory() {
+        type            : ram ;
+        address_width   : 3 ;
+        word_width      : 32 ;
+    }
+    functional_peak_current : 9745.670000;
+    interface_timing     : TRUE ;
+    bus_naming_style     : "%s[%d]" ;
+    area                 : 835.030560 ;
+    dont_use : TRUE ;
+    dont_touch : TRUE ;
+    map_only : TRUE ;
+
+    pg_pin(VDD) {
+        voltage_name : VDD;
+        direction : input;
+        pg_type : primary_power;
+    }
+    pg_pin(VSS) {
+        voltage_name : VSS;
+        direction : input;
+        pg_type : primary_ground;
+    }
+    
+    bus(RCT) {
+        bus_type : RCT_1_0 ;
+        direction : input;
+        max_transition  : 0.580000 ;
+        capacitance : 0.007220;
+
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "!WEB" ;
+      
+            sdf_cond        : "check_noidle_w" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "!WEB" ;
+      
+            sdf_cond        : "check_noidle_w" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "WEB" ;
+      
+            sdf_cond        : "check_idle_w" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "WEB" ;
+      
+            sdf_cond        : "check_idle_w" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "!REB" ;
+      
+            sdf_cond        : "check_noidle_r" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "!REB" ;
+      
+            sdf_cond        : "check_noidle_r" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "REB" ;
+      
+            sdf_cond        : "check_idle_r" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "REB" ;
+      
+            sdf_cond        : "check_idle_r" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+        }
+        pin(RCT[1:0]) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.003444") ;
+            }
+            fall_power("scalar") {
+                values ("0.003444") ;
+            }
+        }  
+        }
+    }
+    bus(WCT) {
+        bus_type : WCT_1_0 ;
+        direction : input;
+        max_transition  : 0.580000 ;
+        capacitance : 0.007108;
+
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "!WEB" ;
+      
+            sdf_cond        : "check_noidle_w" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "!WEB" ;
+      
+            sdf_cond        : "check_noidle_w" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "WEB" ;
+      
+            sdf_cond        : "check_idle_w" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "WEB" ;
+      
+            sdf_cond        : "check_idle_w" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "!REB" ;
+      
+            sdf_cond        : "check_noidle_r" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "!REB" ;
+      
+            sdf_cond        : "check_noidle_r" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "REB" ;
+      
+            sdf_cond        : "check_idle_r" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "REB" ;
+      
+            sdf_cond        : "check_idle_r" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+        }
+        pin(WCT[1:0]) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.003444") ;
+            }
+            fall_power("scalar") {
+                values ("0.003444") ;
+            }
+        }  
+        }
+    }
+    bus(KP) {
+        bus_type : KP_2_0 ;
+        direction : input;
+        max_transition  : 0.580000 ;
+        capacitance : 0.001682;
+
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "!WEB" ;
+      
+            sdf_cond        : "check_noidle_w" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "!WEB" ;
+      
+            sdf_cond        : "check_noidle_w" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "WEB" ;
+      
+            sdf_cond        : "check_idle_w" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+    
+      
+            when            : "WEB" ;
+      
+            sdf_cond        : "check_idle_w" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "!REB" ;
+      
+            sdf_cond        : "check_noidle_r" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "!REB" ;
+      
+            sdf_cond        : "check_noidle_r" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "REB" ;
+      
+            sdf_cond        : "check_idle_r" ;
+    
+            rise_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+            fall_constraint("scalar") {
+                values ( "0.000000" ) ;
+            }
+        }
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+    
+      
+            when            : "REB" ;
+      
+            sdf_cond        : "check_idle_r" ;
+    
+            rise_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+            
+            fall_constraint(asyntran_constraint_template) {
+                values ( "1.147261, 1.169818, 1.198171, 1.247858, 1.334084" ) ;
+            }
+        }
+        pin(KP[2:0]) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.003444") ;
+            }
+            fall_power("scalar") {
+                values ("0.003444") ;
+            }
+        }  
+        }
+    }
+ 
+ 
+    pin(CLKW) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.004034 ;
+        clock           : true ;
+        pin_func_type   : active_rising ;
+
+       timing() {
+            timing_type  : max_clock_tree_path;
+            timing_sense : positive_unate;
+            cell_rise( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+            cell_fall( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+       }
+       timing() {
+            timing_type  : min_clock_tree_path;
+            timing_sense : positive_unate;
+            cell_rise( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+            cell_fall( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+        }               
+        timing () {
+            timing_type : "min_pulse_width" ;
+            related_pin : "CLKW" ;
+            when : "!WEB" ;
+            sdf_cond : "check_web" ;
+            rise_constraint ( "clktran_constraint_template" ) {
+                values ( "0.208621, 0.233685, 0.265189, 0.320396, 0.416203" ) ;
+            }
+            fall_constraint ( "clktran_constraint_template" ) {
+                values ( "0.461030, 0.486095, 0.517599, 0.572806, 0.668613" ) ;
+            }
+        }
+        timing () {
+            timing_type : "minimum_period" ;
+            related_pin : "CLKW" ;
+            when : "!WEB" ;
+            sdf_cond : "check_web" ;
+            rise_constraint ( "clktran_constraint_template" ) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+            fall_constraint ( "clktran_constraint_template" ) {
+                values ( "1.274734, 1.299798, 1.331302, 1.386509, 1.482316" ) ;
+            }
+        }
+
+
+        
+        timing() {
+            timing_type   : recovery_rising ;
+            related_pin   : "CLKR" ;
+            when          : "(!WEB & !REB)" ;
+            sdf_cond      : "check_twrcc" ;
+            
+            rise_constraint("scalar") {
+                values ("1.274730" ) ;
+            }
+        }
+
+        
+
+
+
+        internal_power () {
+            related_pg_pin : VDD;
+            when : "!WEB &(!BWEB[31] & !BWEB[30] & !BWEB[29] & !BWEB[28] & !BWEB[27] & !BWEB[26] & !BWEB[25] & !BWEB[24] & !BWEB[23] & !BWEB[22] & !BWEB[21] & !BWEB[20] & !BWEB[19] & !BWEB[18] & !BWEB[17] & !BWEB[16] & !BWEB[15] & !BWEB[14] & !BWEB[13] & !BWEB[12] & !BWEB[11] & !BWEB[10] & !BWEB[9] & !BWEB[8] & !BWEB[7] & !BWEB[6] & !BWEB[5] & !BWEB[4] & !BWEB[3] & !BWEB[2] & !BWEB[1] & !BWEB[0]) ";
+            rise_power("scalar") {
+                values ("0.466126") ;
+            }
+            fall_power("scalar") {
+                values ("0.051792") ;
+            }
+        }
+        internal_power () {
+            related_pg_pin : VDD;
+            when : "!WEB &(BWEB[31] & BWEB[30] & BWEB[29] & BWEB[28] & BWEB[27] & BWEB[26] & BWEB[25] & BWEB[24] & BWEB[23] & BWEB[22] & BWEB[21] & BWEB[20] & BWEB[19] & BWEB[18] & BWEB[17] & BWEB[16] & BWEB[15] & BWEB[14] & BWEB[13] & BWEB[12] & BWEB[11] & BWEB[10] & BWEB[9] & BWEB[8] & BWEB[7] & BWEB[6] & BWEB[5] & BWEB[4] & BWEB[3] & BWEB[2] & BWEB[1] & BWEB[0]) ";
+            rise_power("scalar") {
+                values ("0.417377") ;
+            }
+            fall_power("scalar") {
+                values ("0.046375") ;
+            }
+        }
+        internal_power () {
+            related_pg_pin : VDD;
+            when : "!WEB & (!(BWEB[31] & BWEB[30] & BWEB[29] & BWEB[28] & BWEB[27] & BWEB[26] & BWEB[25] & BWEB[24] & BWEB[23] & BWEB[22] & BWEB[21] & BWEB[20] & BWEB[19] & BWEB[18] & BWEB[17] & BWEB[16] & BWEB[15] & BWEB[14] & BWEB[13] & BWEB[12] & BWEB[11] & BWEB[10] & BWEB[9] & BWEB[8] & BWEB[7] & BWEB[6] & BWEB[5] & BWEB[4] & BWEB[3] & BWEB[2] & BWEB[1] & BWEB[0]) & !(!BWEB[31] & !BWEB[30] & !BWEB[29] & !BWEB[28] & !BWEB[27] & !BWEB[26] & !BWEB[25] & !BWEB[24] & !BWEB[23] & !BWEB[22] & !BWEB[21] & !BWEB[20] & !BWEB[19] & !BWEB[18] & !BWEB[17] & !BWEB[16] & !BWEB[15] & !BWEB[14] & !BWEB[13] & !BWEB[12] & !BWEB[11] & !BWEB[10] & !BWEB[9] & !BWEB[8] & !BWEB[7] & !BWEB[6] & !BWEB[5] & !BWEB[4] & !BWEB[3] & !BWEB[2] & !BWEB[1] & !BWEB[0]))  ";
+            rise_power("scalar") {
+                values ("0.441752") ;
+            }
+            fall_power("scalar") {
+                values ("0.049084") ;
+            }
+        }
+        
+        internal_power () {
+            related_pg_pin : VDD;
+            when : "WEB";
+            rise_power("scalar") {
+                values ("0.005347") ;
+            }
+            fall_power("scalar") {
+                values ("0.000000") ;
+            }
+        }
+        
+
+    }   /* pin(CLKW) */
+    
+    pin(WEB) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.001836 ;
+        
+        
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+             
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.349913, 0.374046, 0.407079, 0.471031, 0.583534",\
+              "0.326041, 0.350174, 0.383208, 0.447160, 0.559662",\
+              "0.296745, 0.320877, 0.353911, 0.417863, 0.530366",\
+              "0.247793, 0.271927, 0.304960, 0.368912, 0.481415",\
+              "0.167584, 0.191717, 0.224750, 0.288702, 0.401205"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.349913, 0.374046, 0.407079, 0.471031, 0.583534",\
+              "0.326041, 0.350174, 0.383208, 0.447160, 0.559662",\
+              "0.296745, 0.320877, 0.353911, 0.417863, 0.530366",\
+              "0.247793, 0.271927, 0.304960, 0.368912, 0.481415",\
+              "0.167584, 0.191717, 0.224750, 0.288702, 0.401205"\
+               ) ;
+            }
+        }
+        
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+             
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.176270, 0.165872, 0.150976, 0.127762, 0.092846",\
+              "0.209918, 0.199520, 0.184624, 0.161410, 0.126494",\
+              "0.253103, 0.242705, 0.227809, 0.204595, 0.169679",\
+              "0.326542, 0.316144, 0.301248, 0.278034, 0.243118",\
+              "0.454641, 0.444243, 0.429346, 0.406133, 0.371217"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) { 
+                values ( \
+              "0.176270, 0.165872, 0.150976, 0.127762, 0.092846",\
+              "0.209918, 0.199520, 0.184624, 0.161410, 0.126494",\
+              "0.253103, 0.242705, 0.227809, 0.204595, 0.169679",\
+              "0.326542, 0.316144, 0.301248, 0.278034, 0.243118",\
+              "0.454641, 0.444243, 0.429346, 0.406133, 0.371217"\
+               ) ;
+            }
+        }
+
+        
+        
+
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.003444") ;
+            }
+            fall_power("scalar") {
+                values ("0.003444") ;
+            }
+        }  
+
+        
+    }   /* pin(WEB) */
+    
+    
+    bus(AA) {
+        bus_type        : AA_2_0 ;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.001391 ;
+        
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+            when            :"(!WEB)" ;
+            sdf_cond        :"WE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.252289, 0.275255, 0.306286, 0.366358, 0.471375",\
+              "0.228279, 0.251245, 0.282276, 0.342348, 0.447365",\
+              "0.197552, 0.220519, 0.251550, 0.311621, 0.416639",\
+              "0.144776, 0.167743, 0.198774, 0.258845, 0.363863",\
+              "0.053223, 0.076189, 0.107220, 0.167292, 0.272309"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.252289, 0.275255, 0.306286, 0.366358, 0.471375",\
+              "0.228279, 0.251245, 0.282276, 0.342348, 0.447365",\
+              "0.197552, 0.220519, 0.251550, 0.311621, 0.416639",\
+              "0.144776, 0.167743, 0.198774, 0.258845, 0.363863",\
+              "0.053223, 0.076189, 0.107220, 0.167292, 0.272309"\
+               ) ;
+            }
+        }
+        
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+            when            :"(!WEB)" ;
+            sdf_cond        :"WE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.350206, 0.340127, 0.325896, 0.302214, 0.267931",\
+              "0.383854, 0.373775, 0.359544, 0.335861, 0.301579",\
+              "0.427039, 0.416960, 0.402729, 0.379047, 0.344764",\
+              "0.500478, 0.490399, 0.476168, 0.452485, 0.418203",\
+              "0.636435, 0.625347, 0.609694, 0.583643, 0.546301"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.350206, 0.340127, 0.325896, 0.302214, 0.267931",\
+              "0.383854, 0.373775, 0.359544, 0.335861, 0.301579",\
+              "0.427039, 0.416960, 0.402729, 0.379047, 0.344764",\
+              "0.500478, 0.490399, 0.476168, 0.452485, 0.418203",\
+              "0.636435, 0.625347, 0.609694, 0.583643, 0.546301"\
+               ) ;
+            }
+        }
+
+        
+        pin(AA[2:0]) {
+            related_power_pin : VDD;
+            related_ground_pin : VSS;
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.023944") ;
+            }
+            fall_power("scalar") {
+                values ("0.023944") ;
+            }
+        }   
+        }
+    }   /* bus(AA) */
+    
+    
+    
+    
+    bus(D) {
+        bus_type        : D_31_0 ;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.001361 ;
+        memory_write() {
+            address     : AA ;
+            clocked_on  : CLKW ;
+        }
+        
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+            when            :"(!WEB)" ;
+            sdf_cond        :"WE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.168640, 0.195219, 0.230608, 0.297270, 0.418224",\
+              "0.144630, 0.171209, 0.206598, 0.273261, 0.394214",\
+              "0.113904, 0.140483, 0.175871, 0.242534, 0.363488",\
+              "0.061128, 0.087707, 0.123095, 0.189758, 0.310712",\
+              "0.000000, 0.000000, 0.031542, 0.098204, 0.219158"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.168640, 0.195219, 0.230608, 0.297270, 0.418224",\
+              "0.144630, 0.171209, 0.206598, 0.273261, 0.394214",\
+              "0.113904, 0.140483, 0.175871, 0.242534, 0.363488",\
+              "0.061128, 0.087707, 0.123095, 0.189758, 0.310712",\
+              "0.000000, 0.000000, 0.031542, 0.098204, 0.219158"\
+               ) ;
+            }
+        }
+        
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+            when            :"(!WEB)" ;
+            sdf_cond        :"WE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.487749, 0.461009, 0.426016, 0.361587, 0.259580",\
+              "0.511783, 0.485043, 0.450050, 0.385622, 0.283614",\
+              "0.542630, 0.515890, 0.480897, 0.416468, 0.314460",\
+              "0.599595, 0.570181, 0.533353, 0.468924, 0.366917",\
+              "0.700245, 0.670830, 0.632338, 0.561466, 0.458416"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.487749, 0.461009, 0.426016, 0.361587, 0.259580",\
+              "0.511783, 0.485043, 0.450050, 0.385622, 0.283614",\
+              "0.542630, 0.515890, 0.480897, 0.416468, 0.314460",\
+              "0.599595, 0.570181, 0.533353, 0.468924, 0.366917",\
+              "0.700245, 0.670830, 0.632338, 0.561466, 0.458416"\
+               ) ;
+            }
+        }
+        
+        
+        pin(D[31:0]) {
+            related_power_pin : VDD;
+            related_ground_pin : VSS;
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.006524") ;
+            }
+            fall_power("scalar") {
+                values ("0.006524") ;
+            }
+        }
+        }
+
+    }   /* bus(D) */
+    
+    
+
+    
+    
+    bus(BWEB) {
+        bus_type        : BWEB_31_0 ;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.001324 ;
+        
+       timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKW" ;
+            when            :"(!WEB)" ;
+            sdf_cond        :"WE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.211748, 0.238327, 0.273715, 0.340378, 0.461487",\
+              "0.187876, 0.214455, 0.249844, 0.316506, 0.437616",\
+              "0.158580, 0.185158, 0.220547, 0.287210, 0.408319",\
+              "0.109628, 0.136207, 0.171596, 0.238259, 0.359368",\
+              "0.029419, 0.055998, 0.091386, 0.158049, 0.279158"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.211748, 0.238327, 0.273715, 0.340378, 0.461487",\
+              "0.187876, 0.214455, 0.249844, 0.316506, 0.437616",\
+              "0.158580, 0.185158, 0.220547, 0.287210, 0.408319",\
+              "0.109628, 0.136207, 0.171596, 0.238259, 0.359368",\
+              "0.029419, 0.055998, 0.091386, 0.158049, 0.279158"\
+               ) ;
+            }
+        }
+        
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKW" ;
+            when            :"(!WEB)" ;
+            sdf_cond        :"WE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.390767, 0.366258, 0.334757, 0.277058, 0.175758",\
+              "0.414801, 0.390292, 0.358791, 0.301093, 0.199792",\
+              "0.445647, 0.421139, 0.389638, 0.331939, 0.230639",\
+              "0.498104, 0.473595, 0.442094, 0.384396, 0.283095",\
+              "0.593564, 0.566604, 0.533593, 0.475895, 0.374594"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.390767, 0.366258, 0.334757, 0.277058, 0.175758",\
+              "0.414801, 0.390292, 0.358791, 0.301093, 0.199792",\
+              "0.445647, 0.421139, 0.389638, 0.331939, 0.230639",\
+              "0.498104, 0.473595, 0.442094, 0.384396, 0.283095",\
+              "0.593564, 0.566604, 0.533593, 0.475895, 0.374594"\
+               ) ;
+            }
+        }
+
+        
+        pin(BWEB[31:0]) {
+            related_power_pin : VDD;
+            related_ground_pin : VSS;
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.004914") ;
+            }
+            fall_power("scalar") {
+                values ("0.004914") ;
+            }
+        }
+        }
+  
+    }   /* bus(BWEB) */
+    
+    
+    
+    pin(CLKR) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.004010 ;
+        clock           : true ;
+        pin_func_type   : active_rising ;
+        timing() {
+            timing_type  : max_clock_tree_path;
+            timing_sense : positive_unate;
+            cell_rise( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+            cell_fall( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+        }
+        timing() {
+            timing_type  : min_clock_tree_path;
+            timing_sense : positive_unate;
+            cell_rise( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+            cell_fall( "clktree_constraint_template" ) {
+                values  ( "   0,    0,    0,    0,    0" );
+            }
+        }               
+        timing () {
+            timing_type : "min_pulse_width" ;
+            related_pin : "CLKR" ;
+            when : "!REB" ;
+            sdf_cond : "check_reb" ;
+            rise_constraint ( "clktran_constraint_template" ) {
+                values ( "0.100000, 0.100000, 0.100000, 0.100000, 0.100000" ) ;
+            }
+            fall_constraint ( "clktran_constraint_template" ) {
+                values ( "0.427382, 0.438740, 0.447006, 0.457672, 0.471241" ) ;
+            }
+        }
+        timing () {
+            timing_type : "minimum_period" ;
+            related_pin : "CLKR" ;
+            when : "!REB" ;
+            sdf_cond : "check_reb" ;
+            rise_constraint ( "clktran_constraint_template" ) {
+                values ( "0.944717, 0.956075, 0.964341, 0.975006, 1.160000" ) ;
+            }
+            fall_constraint ( "clktran_constraint_template" ) {
+                values ( "0.944717, 0.956075, 0.964341, 0.975006, 1.160000" ) ;
+            }
+        }
+
+        timing() {
+            
+            timing_type   : recovery_rising ;
+            related_pin   : "CLKW" ;
+            when          : "(!WEB & !REB)" ;
+            sdf_cond      : "check_trwcc" ;
+            
+            rise_constraint("scalar") {
+                values ( "0.944717" ) ;
+            }
+        }
+        
+        
+
+
+        internal_power () {
+            related_pg_pin : VDD;
+            when : "!REB";
+
+            rise_power("scalar") {
+                values ("0.221501") ;
+            }
+            fall_power("scalar") {
+                values ("0.332252") ;
+            }
+        }
+        
+        
+        internal_power () {
+            related_pg_pin : VDD;
+            when : "REB";
+            rise_power("scalar") {
+                values ("0.005769") ;
+            }
+            fall_power("scalar") {
+                values ("0.000000") ;
+            }
+        }
+        
+    }   /* pin(CLKR) */
+    
+    
+    pin(REB) {
+        related_power_pin : VDD;
+        related_ground_pin : VSS;
+         direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.001852 ;
+        
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.389138, 0.415101, 0.447817, 0.511175, 0.623867",\
+              "0.361342, 0.387305, 0.420021, 0.483379, 0.596071",\
+              "0.331590, 0.357553, 0.390269, 0.453626, 0.566319",\
+              "0.281538, 0.307501, 0.340217, 0.403575, 0.516268",\
+              "0.197424, 0.223387, 0.256103, 0.319461, 0.432153"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.389138, 0.415101, 0.447817, 0.511175, 0.623867",\
+              "0.361342, 0.387305, 0.420021, 0.483379, 0.596071",\
+              "0.331590, 0.357553, 0.390269, 0.453626, 0.566319",\
+              "0.281538, 0.307501, 0.340217, 0.403575, 0.516268",\
+              "0.197424, 0.223387, 0.256103, 0.319461, 0.432153"\
+               ) ;
+            }
+        }
+        
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.168047, 0.157595, 0.142908, 0.119190, 0.083941",\
+              "0.183449, 0.172998, 0.158311, 0.134593, 0.099344",\
+              "0.195171, 0.184720, 0.170033, 0.146315, 0.111066",\
+              "0.209707, 0.199255, 0.184568, 0.160850, 0.125601",\
+              "0.229246, 0.218795, 0.204108, 0.180390, 0.145141"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) { 
+                values ( \
+              "0.168047, 0.157595, 0.142908, 0.119190, 0.083941",\
+              "0.183449, 0.172998, 0.158311, 0.134593, 0.099344",\
+              "0.195171, 0.184720, 0.170033, 0.146315, 0.111066",\
+              "0.209707, 0.199255, 0.184568, 0.160850, 0.125601",\
+              "0.229246, 0.218795, 0.204108, 0.180390, 0.145141"\
+               ) ;
+            }
+        }       
+        
+
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.003846") ;
+            }
+            fall_power("scalar") {
+                values ("0.003846") ;
+            }
+        }  
+    }   /* pin(REB) */
+    
+    
+    bus(AB) {
+        bus_type        : AB_2_0 ;
+        direction       : input ;
+        max_transition  : 0.580000 ;
+        capacitance     : 0.001394 ;
+        
+        timing() {
+            timing_type     : setup_rising ;
+            related_pin     : "CLKR" ;
+            when            :"(!REB)" ;
+            sdf_cond        :"RE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.249928, 0.268244, 0.290477, 0.324842, 0.375437",\
+              "0.238859, 0.257175, 0.279408, 0.313773, 0.364368",\
+              "0.230563, 0.248879, 0.271111, 0.305477, 0.356072",\
+              "0.220074, 0.238390, 0.260622, 0.294988, 0.345583",\
+              "0.206138, 0.224454, 0.246687, 0.281052, 0.331647"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.249928, 0.268244, 0.290477, 0.324842, 0.375437",\
+              "0.238859, 0.257175, 0.279408, 0.313773, 0.364368",\
+              "0.230563, 0.248879, 0.271111, 0.305477, 0.356072",\
+              "0.220074, 0.238390, 0.260622, 0.294988, 0.345583",\
+              "0.206138, 0.224454, 0.246687, 0.281052, 0.331647"\
+               ) ;
+            }
+        }
+        
+        timing() {
+            timing_type     : hold_rising ;
+            related_pin     : "CLKR" ;
+            when            :"(!REB)" ;
+            sdf_cond        :"RE_nopd" ;
+            
+            rise_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.180623, 0.172602, 0.164882, 0.152918, 0.137027",\
+              "0.196026, 0.188005, 0.180284, 0.168320, 0.152429",\
+              "0.207748, 0.199727, 0.192006, 0.180041, 0.164152",\
+              "0.222283, 0.214262, 0.206541, 0.194577, 0.178686",\
+              "0.241823, 0.233802, 0.226081, 0.214117, 0.198226"\
+               ) ;
+            }
+            
+            fall_constraint(sig2sram_constraint_template) {
+                values ( \
+              "0.180623, 0.172602, 0.164882, 0.152918, 0.137027",\
+              "0.196026, 0.188005, 0.180284, 0.168320, 0.152429",\
+              "0.207748, 0.199727, 0.192006, 0.180041, 0.164152",\
+              "0.222283, 0.214262, 0.206541, 0.194577, 0.178686",\
+              "0.241823, 0.233802, 0.226081, 0.214117, 0.198226"\
+               ) ;
+            }
+        }
+
+        
+        pin(AB[2:0]) {
+            related_power_pin : VDD;
+            related_ground_pin : VSS;
+
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power("scalar") {
+                values ("0.023944") ;
+            }
+            fall_power("scalar") {
+                values ("0.023944") ;
+            }
+        }  
+        }
+
+    }   /* bus(AB) */
+    
+    
+
+
+    
+    bus(Q) {
+        bus_type        : Q_31_0 ;
+        direction       : output ;
+        max_capacitance : 0.219700 ;
+        memory_read() {
+            address     : AB ;
+        }
+        timing() {
+            related_pin   : "CLKR" ;
+            timing_type   : rising_edge ;
+            timing_sense  : non_unate ;
+
+            when          : "!REB" ;
+            sdf_cond      : "!REB" ;
+
+            cell_rise(sig2sram_delay_template) {
+                values ( \
+              "0.380490, 0.434395, 0.490269, 0.590281, 0.790559",\
+              "0.391849, 0.445753, 0.501627, 0.601639, 0.801917",\
+              "0.400115, 0.454020, 0.509893, 0.609905, 0.810183",\
+              "0.410781, 0.464685, 0.520558, 0.620571, 0.820849",\
+              "0.424350, 0.478254, 0.534128, 0.634140, 0.834418"\
+               ) ;
+            }
+            
+            cell_fall(sig2sram_delay_template) {
+                values ( \
+              "0.380490, 0.434395, 0.490269, 0.590281, 0.790559",\
+              "0.391849, 0.445753, 0.501627, 0.601639, 0.801917",\
+              "0.400115, 0.454020, 0.509893, 0.609905, 0.810183",\
+              "0.410781, 0.464685, 0.520558, 0.620571, 0.820849",\
+              "0.424350, 0.478254, 0.534128, 0.634140, 0.834418"\
+               ) ;
+            }
+            
+            retaining_rise(sig2sram_delay_template) {
+                values ( \
+              "0.212936, 0.245780, 0.280024, 0.344824, 0.467216",\
+              "0.223753, 0.256597, 0.290841, 0.355642, 0.478033",\
+              "0.231626, 0.264469, 0.298714, 0.363515, 0.485905",\
+              "0.241784, 0.274627, 0.308871, 0.373672, 0.496063",\
+              "0.254707, 0.287550, 0.321794, 0.386595, 0.508986"\
+               ) ;
+            }
+            
+            retaining_fall(sig2sram_delay_template) {
+                values ( \
+              "0.212936, 0.245780, 0.280024, 0.344824, 0.467216",\
+              "0.223753, 0.256597, 0.290841, 0.355642, 0.478033",\
+              "0.231626, 0.264469, 0.298714, 0.363515, 0.485905",\
+              "0.241784, 0.274627, 0.308871, 0.373672, 0.496063",\
+              "0.254707, 0.287550, 0.321794, 0.386595, 0.508986"\
+               ) ;
+            }
+            
+            rise_transition(sram_load_template) {
+                values ( "0.036243, 0.117449, 0.204210, 0.385346, 0.759329" ) ;
+
+            }
+            
+            fall_transition(sram_load_template) {
+                values ( "0.036243, 0.117449, 0.204210, 0.385346, 0.759329" ) ;
+
+            }
+            
+            retain_rise_slew(sram_load_template) {
+                values ( "0.025261, 0.079077, 0.137147, 0.254022, 0.486262" ) ;
+            }
+            
+            retain_fall_slew(sram_load_template) {
+                values ( "0.025261, 0.079077, 0.137147, 0.254022, 0.486262" ) ;
+            }
+        }
+
+
+
+
+        pin(Q[31:0]) {
+            related_power_pin : VDD;
+            related_ground_pin : VSS;
+            power_down_function : "!VDD + VSS";
+        internal_power () {
+            related_pg_pin : VDD;
+            rise_power(sram_power_template) {
+                values ("0.001446, 0.001446, 0.001446, 0.001446, 0.001446") ;
+            }
+            fall_power(sram_power_template) {
+                values ("0.000000, 0.000000, 0.000000, 0.000000, 0.000000") ;
+            }
+        }
+    }
+} /* bus(Q) */
+    
+    
+    
+
+
+
+
+
+    
+
+
+
+  leakage_power () {
+    related_pg_pin : VDD;
+    value : 0.044247;
+  }
+  
+
+
+}   /* cell() */
+
+}   /* library() */
+

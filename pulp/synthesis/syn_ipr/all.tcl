@@ -35,7 +35,7 @@ puts "Hostname : [info hostname]"
 ## Preset global variables and attributes
 ##############################################################################
 ### This is Design based, specify name of top module
-set DESIGN ipr
+set DESIGN ipr_cntrl
 
 # Set synthesis efforts for different stages
 set SYN_EFF medium

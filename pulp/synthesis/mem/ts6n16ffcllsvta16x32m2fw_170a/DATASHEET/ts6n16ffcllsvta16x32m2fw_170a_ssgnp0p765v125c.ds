@@ -1,0 +1,178 @@
+ 
+###############################################################################
+#                                                    
+#        Technology     : TSMC 16nm CMOS Logic FinFet (FFC) HKMG
+#        Memory Type    : TSMC 16nm FFC Two Port Register File with d130 bit cell
+#        Library Name   : ts6n16ffcllsvta16x32m2fw (user specify : ts6n16ffcllsvta16x32m2fw)
+#        Library Version: 170a
+#        Generated Time : 2025/06/18, 12:58:42
+###############################################################################
+# STATEMENT OF USE                                                             
+#                                                                              
+#  This information contains confidential and proprietary information of TSMC. 
+# No part of this information may be reproduced, transmitted, transcribed,     
+# stored in a retrieval system, or translated into any human or computer       
+# language, in any form or by any means, electronic, mechanical, magnetic,     
+# optical, chemical, manual, or otherwise, without the prior written permission
+# of TSMC. This information was prepared for informational purpose and is for  
+# use by TSMC's customers only. TSMC reserves the right to make changes in the 
+# inforrmation at any time and without notice.                                 
+
+###############################################################################
+1. Area
+   Pre-shrink (dimensions in GDS database)
+   ----------------------------------------------
+   |  Width(um)  | Height(um)  |  Area (um^2)   |
+   ----------------------------------------------
+   |   17.137    |  66.720     |   1143.381     | 
+   ----------------------------------------------
+
+
+2. Timing specification
+
+2.1 Timing Protocol (Refer to the waveforms in the databook)
+
+2.2 SRAM timing:
+
+I. Normal Mode
+           
+           Symbol    Param. Value (ns)	Parameter                 
+           ------    ------------	-----------------                 
+           trcyc         0.598		Minimum read cycle time   
+           twcyc         0.799		Minimum write cycle time  
+           tcd           0.301		CLK to Valid Q            
+           thold         0.180		CLK to Invalid Q          
+           taas          0.169		Write Address setup       
+           taah          0.223		Write Address hold        
+           tabs          0.170		Read Address setup        
+           tabh          0.164		Read Address hold         
+           trs           0.248		Read enable setup         
+           trh           0.123		Read enable hold          
+           tws           0.226		Write enable setup        
+           twh           0.124		Write enable hold         
+           tbws          0.140		Bit-write enable setup    
+           tbwh          0.229		Bit-write enable hold     
+           tds           0.123		Data setup                
+           tdh           0.280		Data hold                 
+           twckh         0.131		Write Clock high          
+           twckl         0.264		Write Clock low           
+           trckh         0.100		Read Clock high           
+           trckl         0.272		Read Clock low            
+           twrcc (1)     0.799		Clock separation W-R      
+           trwcc (1)     0.598		Clock separation R-W      
+           ttests        0.799		WCT setup                 
+           ttesth        0.719		WCT hold                  
+	   
+
+  1. twrcc apply only for determinate results where addresses match. 
+
+   
+      
+   
+   
+   
+   
+
+3. Pin capacitance
+
+           Pin          Value (pF)
+
+           ---------    ------------------
+           AA[3:0]         0.001
+           AB[3:0]         0.001
+           D[31:0]         0.002
+           CLKR            0.004
+           CLKW            0.004
+           REB             0.002
+           WEB             0.002
+           BWEB[31:0]      0.002
+           RCT[1:0]	   0.007
+           WCT[1:0]	   0.007
+           KP[2:0]   	   0.002
+
+
+
+4. Power
+
+  DC and AC power number definitions as following:
+     - Read current: Clock read current which excludes leakage and pin power
+     - Write current: Clock write current which excludes leakage and pin power
+     - Deselect current : memory is disabled by REB/WEB pin, and clock is toggling; all signals are
+       in steady state
+     - Static standby (leakage) current: memory is disabled by REB/WEB pin, and clock is not
+       toggling; all signals are in steady state
+     - Dynamic standby current: memory is disabled by REB/WEB pin, and clock is toggling; address,
+       data and bit-write pins maintain 50% activity
+     - Pin power: specific power for pin/bus contribution information, please refer to Dynamic Power
+       break down per pin table
+
+
+  4.1 Static Power
+
+    Functional Mode                                 	Value
+    --------------------------                     	----------------
+    Leakage Current				    	    25.1370 (uA)
+
+
+   Leakage Current = memory is disabled by REB/WEB pin and CLK is not toggling, all signals are in steady state
+
+  4.2 Dynamic Power - Average  
+
+        Activity        Input     Input   Input   Input           Output  VDD (VDD+VDDM)
+        Factor          CLK       A       D       BWEB            Q       Value (uA/MHz)
+        Read            50%       50%     0%      no mask         50%     0.869
+        write           50%       50%     50%     no mask         0%      0.872 
+        write           50%       50%     50%     half mask       0%      0.847 
+        Read            100%      50%     0%      no mask         50%     1.607 
+        write           100%      50%     50%     no mask         0%      1.450 
+        write           100%      50%     50%     half mask       0%      1.399 
+        Deselect        100%      50%     50%     no mask         0%      0.406
+
+
+
+
+    4.2.1  The deselect power assume memory is disabled by REB/WEB pin and CLKR/CLKW is toggling; address and 
+            data pins maintain 50% activity.
+    4.2.2  The read average power assume 50% activity of relevant input pins, which is typically defined as 50%
+            of the address AB and output Q changing.
+    4.2.3  The write average power assume 50% activity of relevant input pins, which is typically defined as 50%
+            of the address AA and input data D changing. 
+    4.2.4  No load on outputs (Q).
+    4.2.5  BWEB bus is not switching in read and write conditions. Write power are provided in half data write 
+            mask and full data write cases
+
+  4.3 Dynamic Power - Breakout per pin
+
+    Pins                                            Value
+    ------------------------                        ----------------
+    CLK - Read Mode                            	     1.4757 (uA/MHz)
+    CLK - Write w/ no mask                     	     1.1555 (uA/MHz)
+    CLK - Write w/ half mask                   	     1.1047 (uA/MHz)
+    CLK - Write w/ full mask                   	     1.0539 (uA/MHz)
+    CLK - Deselect                            	     0.0188 (uA/MHz)
+    REB                                        	     0.0065 (uA/MHz)
+    WEB                                        	     0.0057 (uA/MHz)
+
+
+    Deselect = memory is disabled by REB/WEB pin and CLK is toggling, all signals are in steady state
+
+    Buses                                           Value (per pin)
+    ------------------------                        ----------------
+    D[31:0]                                	     0.0126 (uA/MHz)
+    AA[3:0]                             	     0.0465 (uA/MHz)
+    AB[3:0]                             	     0.0465 (uA/MHz)
+    Q[31:0]                                	     0.0024 (uA/MHz)
+    BWEB[31:0]                             	     0.0089 (uA/MHz)
+    WCT[1:0] 					     0.0057 (uA/MHz)
+    RCT[1:0]					     0.0057 (uA/MHz)
+    KP[2:0]					     0.0057 (uA/MHz)
+
+
+
+
+
+    4.3.1 Deselect = memory is disabled by REB/WEB pin and CLK is toggling, all signals are in steady state.
+    4.3.2 CLKR/CLKW pin power in read mode and write mode includes CLKR/CLKW rising and falling power
+    4.3.3 CLKR/CLKW pin power in deselect mode is CLKR/CLKW rising power. CLKR/CLKW falling power is zero and included in CLKR/CLKW rising power.
+    4.3.4 Except CLKR/CLKW pin, the pin power of other pins is average of rising and falling power.
+

@@ -1,0 +1,498 @@
+//* 
+//*###############################################################################
+//*#                                                    
+//*#        Technology     : TSMC 16nm CMOS Logic FinFet (FFC) HKMG
+//*#        Memory Type    : TSMC 16nm FFC Two Port Register File with d130 bit cell
+//*#        Library Name   : ts6n16ffcllsvta32x32m4fw (user specify : ts6n16ffcllsvta32x32m4fw)
+//*#        Library Version: 170a
+//*#        Generated Time : 2025/06/18, 12:42:56
+//*###############################################################################
+//*# STATEMENT OF USE                                                             
+//*#                                                                              
+//*#  This information contains confidential and proprietary information of TSMC. 
+//*# No part of this information may be reproduced, transmitted, transcribed,     
+//*# stored in a retrieval system, or translated into any human or computer       
+//*# language, in any form or by any means, electronic, mechanical, magnetic,     
+//*# optical, chemical, manual, or otherwise, without the prior written permission
+//*# of TSMC. This information was prepared for informational purpose and is for  
+//*# use by TSMC's customers only. TSMC reserves the right to make changes in the 
+//*# inforrmation at any time and without notice.                                 
+//*
+//*###############################################################################
+//*VERSION 5.7 ;
+//*BUSBITCHARS "[]" ;
+//*DIVIDERCHAR "/" ;
+//* Template Version : S_04_43201                                       */
+array_delimiter = "[]";
+
+model TS6N16FFCLLSVTA32X32M4FW_RAM_1bit(SD_i, DSLP_i, SLP_i, AWT_i, CLKR_i, CLKW_i, REB_i, WEB_i, BWEB_i, AA_i, AB_i, D_i, Q_i)
+(
+  model_source = verilog_module;
+  input (SD_i) ( )
+  input (DSLP_i) ( )
+  input (SLP_i) ( )
+  input (AWT_i) ( )
+  input (CLKR_i) ( )
+  input (CLKW_i) ( )
+  input (REB_i) ( )
+  input (WEB_i) ( )
+  input (BWEB_i) ( )
+  input (D_i) ( )
+  input (AA_i) (array = 4 : 0;)
+  input (AB_i) (array = 4 : 0;)
+  output (Q_i) (  
+    primitive = _and  u_w_0_A ( mlc_wa1, mlc_wa3, mlc_wa4, mlc_wa5, mlc_wa6, WB );
+    primitive = _inv  mlc_inv_1 ( WEB_i, mlc_wa1 );
+    primitive = _inv  mlc_inv_2 ( BWEB_i, mlc_wa3 );
+    primitive = _inv  mlc_inv_3 ( SD_i, mlc_wa4 );
+    primitive = _inv  mlc_inv_4 ( DSLP_i, mlc_wa5 );
+    primitive = _inv  mlc_inv_5 ( SLP_i, mlc_wa6 );
+    primitive = _and  u_r_0_A ( mlc_ra1, mlc_ra2, mlc_ra3, mlc_ra4, mlc_ra5, RB );
+    primitive = _inv  mlc_inv_6 ( REB_i, mlc_ra1 );
+    primitive = _inv  mlc_inv_7 ( SD_i, mlc_ra2 );
+    primitive = _inv  mlc_inv_8 ( DSLP_i, mlc_ra3 );
+    primitive = _inv  mlc_inv_9 ( SLP_i, mlc_ra4 );
+    primitive = _inv  mlc_inv_10 ( AWT_i, mlc_ra5 );
+
+    data_size = 1;
+    address_size = 5;
+    min_address = 0;
+    max_address = 31;
+    edge_trigger = rw; //  EDGE TRIGGERED read ports and write ports
+    read_write_conflict=XW;
+    
+    // Verilog RAM has no Set or Reset pin : 
+    primitive = _cram MEMORY ( , ,
+      // Following write port will Hold in-memory data when not writing.
+      _write{,,}     (   CLKW_i, WB, AA_i, D_i),
+      // Following read port will Hold output data after reading.
+      _read {,H,H,H} ( , CLKR_i, RB, AB_i, Q_i)
+    );    
+  )
+)
+
+
+model TS6N16FFCLLSVTA32X32M4FW (
+            CLKR, CLKW, REB, WEB,
+            AA, AB, D, 
+            BWEB, 
+            RCT,
+            WCT,
+            KP,
+            Q
+            )
+
+(
+  model_source = verilog_module;
+  intern (Q_awt) (array = 31 : 0;)
+  intern (Q_1bit) (array = 31 : 0;)
+  intern (Q_int) (array = 31 : 0;)
+  intern (iBWEB) (array = 31 : 0;)
+  intern (iD) (array = 31 : 0;)
+  intern (iAA) (array = 4 : 0;)
+  intern (iAB) (array = 4 : 0;)
+  input (CLKR) ()
+  input (CLKW) ()
+  input (WEB) ()
+  input (REB) ()      
+  input (RCT) (array = 1 : 0; used=false; no_fault = sa0 sa1;)
+  input (WCT) (array = 1 : 0; used=false; no_fault = sa0 sa1;)
+  input (KP) (array = 2 : 0; used=false; no_fault = sa0 sa1;)
+  input (AA) (array = 4 : 0;)
+  input (AB) (array = 4 : 0;)
+  input (D) (array = 31 : 0;)
+  input (BWEB) (array = 31 : 0;) 
+
+  output (Q) (array = 31 : 0;
+    primitive = _tie0  mlc_tie0_sd ( SD );
+    primitive = _tie0  mlc_tie0_dslp ( DSLP );
+    primitive = _tie0  mlc_tie0_slp ( SLP );
+    primitive = _tie0  mlc_tie0_awt ( AWT );
+
+    primitive = _tie0  mlc_tie0_bist ( BIST );
+    primitive = _tie0  mlc_tie0_rebm ( REBM );
+    primitive = _tie0  mlc_tie0_webm ( WEBM );
+
+    primitive = _tie0  mlc_tie0_dm_0 ( DM[0] );
+    primitive = _tie0  mlc_tie0_bwebm_0 ( BWEBM[0] );
+    primitive = _tie0  mlc_tie0_dm_1 ( DM[1] );
+    primitive = _tie0  mlc_tie0_bwebm_1 ( BWEBM[1] );
+    primitive = _tie0  mlc_tie0_dm_2 ( DM[2] );
+    primitive = _tie0  mlc_tie0_bwebm_2 ( BWEBM[2] );
+    primitive = _tie0  mlc_tie0_dm_3 ( DM[3] );
+    primitive = _tie0  mlc_tie0_bwebm_3 ( BWEBM[3] );
+    primitive = _tie0  mlc_tie0_dm_4 ( DM[4] );
+    primitive = _tie0  mlc_tie0_bwebm_4 ( BWEBM[4] );
+    primitive = _tie0  mlc_tie0_dm_5 ( DM[5] );
+    primitive = _tie0  mlc_tie0_bwebm_5 ( BWEBM[5] );
+    primitive = _tie0  mlc_tie0_dm_6 ( DM[6] );
+    primitive = _tie0  mlc_tie0_bwebm_6 ( BWEBM[6] );
+    primitive = _tie0  mlc_tie0_dm_7 ( DM[7] );
+    primitive = _tie0  mlc_tie0_bwebm_7 ( BWEBM[7] );
+    primitive = _tie0  mlc_tie0_dm_8 ( DM[8] );
+    primitive = _tie0  mlc_tie0_bwebm_8 ( BWEBM[8] );
+    primitive = _tie0  mlc_tie0_dm_9 ( DM[9] );
+    primitive = _tie0  mlc_tie0_bwebm_9 ( BWEBM[9] );
+    primitive = _tie0  mlc_tie0_dm_10 ( DM[10] );
+    primitive = _tie0  mlc_tie0_bwebm_10 ( BWEBM[10] );
+    primitive = _tie0  mlc_tie0_dm_11 ( DM[11] );
+    primitive = _tie0  mlc_tie0_bwebm_11 ( BWEBM[11] );
+    primitive = _tie0  mlc_tie0_dm_12 ( DM[12] );
+    primitive = _tie0  mlc_tie0_bwebm_12 ( BWEBM[12] );
+    primitive = _tie0  mlc_tie0_dm_13 ( DM[13] );
+    primitive = _tie0  mlc_tie0_bwebm_13 ( BWEBM[13] );
+    primitive = _tie0  mlc_tie0_dm_14 ( DM[14] );
+    primitive = _tie0  mlc_tie0_bwebm_14 ( BWEBM[14] );
+    primitive = _tie0  mlc_tie0_dm_15 ( DM[15] );
+    primitive = _tie0  mlc_tie0_bwebm_15 ( BWEBM[15] );
+    primitive = _tie0  mlc_tie0_dm_16 ( DM[16] );
+    primitive = _tie0  mlc_tie0_bwebm_16 ( BWEBM[16] );
+    primitive = _tie0  mlc_tie0_dm_17 ( DM[17] );
+    primitive = _tie0  mlc_tie0_bwebm_17 ( BWEBM[17] );
+    primitive = _tie0  mlc_tie0_dm_18 ( DM[18] );
+    primitive = _tie0  mlc_tie0_bwebm_18 ( BWEBM[18] );
+    primitive = _tie0  mlc_tie0_dm_19 ( DM[19] );
+    primitive = _tie0  mlc_tie0_bwebm_19 ( BWEBM[19] );
+    primitive = _tie0  mlc_tie0_dm_20 ( DM[20] );
+    primitive = _tie0  mlc_tie0_bwebm_20 ( BWEBM[20] );
+    primitive = _tie0  mlc_tie0_dm_21 ( DM[21] );
+    primitive = _tie0  mlc_tie0_bwebm_21 ( BWEBM[21] );
+    primitive = _tie0  mlc_tie0_dm_22 ( DM[22] );
+    primitive = _tie0  mlc_tie0_bwebm_22 ( BWEBM[22] );
+    primitive = _tie0  mlc_tie0_dm_23 ( DM[23] );
+    primitive = _tie0  mlc_tie0_bwebm_23 ( BWEBM[23] );
+    primitive = _tie0  mlc_tie0_dm_24 ( DM[24] );
+    primitive = _tie0  mlc_tie0_bwebm_24 ( BWEBM[24] );
+    primitive = _tie0  mlc_tie0_dm_25 ( DM[25] );
+    primitive = _tie0  mlc_tie0_bwebm_25 ( BWEBM[25] );
+    primitive = _tie0  mlc_tie0_dm_26 ( DM[26] );
+    primitive = _tie0  mlc_tie0_bwebm_26 ( BWEBM[26] );
+    primitive = _tie0  mlc_tie0_dm_27 ( DM[27] );
+    primitive = _tie0  mlc_tie0_bwebm_27 ( BWEBM[27] );
+    primitive = _tie0  mlc_tie0_dm_28 ( DM[28] );
+    primitive = _tie0  mlc_tie0_bwebm_28 ( BWEBM[28] );
+    primitive = _tie0  mlc_tie0_dm_29 ( DM[29] );
+    primitive = _tie0  mlc_tie0_bwebm_29 ( BWEBM[29] );
+    primitive = _tie0  mlc_tie0_dm_30 ( DM[30] );
+    primitive = _tie0  mlc_tie0_bwebm_30 ( BWEBM[30] );
+    primitive = _tie0  mlc_tie0_dm_31 ( DM[31] );
+    primitive = _tie0  mlc_tie0_bwebm_31 ( BWEBM[31] );
+
+    primitive = _tie0  mlc_tie0_ama_0 ( AMA[0] );
+    primitive = _tie0  mlc_tie0_amb_0 ( AMB[0] );
+    primitive = _tie0  mlc_tie0_ama_1 ( AMA[1] );
+    primitive = _tie0  mlc_tie0_amb_1 ( AMB[1] );
+    primitive = _tie0  mlc_tie0_ama_2 ( AMA[2] );
+    primitive = _tie0  mlc_tie0_amb_2 ( AMB[2] );
+    primitive = _tie0  mlc_tie0_ama_3 ( AMA[3] );
+    primitive = _tie0  mlc_tie0_amb_3 ( AMB[3] );
+    primitive = _tie0  mlc_tie0_ama_4 ( AMA[4] );
+    primitive = _tie0  mlc_tie0_amb_4 ( AMB[4] );
+
+    primitive = _mux  mlc_mux_3 ( REB, REBM, BIST, iREB );
+    primitive = _mux  mlc_mux_4 ( WEB, WEBM, BIST, iWEB );
+
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO0 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[0]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[0]), .Q_i(Q_1bit[0]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO1 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[1]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[1]), .Q_i(Q_1bit[1]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO2 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[2]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[2]), .Q_i(Q_1bit[2]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO3 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[3]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[3]), .Q_i(Q_1bit[3]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO4 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[4]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[4]), .Q_i(Q_1bit[4]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO5 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[5]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[5]), .Q_i(Q_1bit[5]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO6 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[6]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[6]), .Q_i(Q_1bit[6]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO7 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[7]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[7]), .Q_i(Q_1bit[7]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO8 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[8]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[8]), .Q_i(Q_1bit[8]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO9 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[9]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[9]), .Q_i(Q_1bit[9]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO10 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[10]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[10]), .Q_i(Q_1bit[10]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO11 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[11]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[11]), .Q_i(Q_1bit[11]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO12 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[12]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[12]), .Q_i(Q_1bit[12]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO13 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[13]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[13]), .Q_i(Q_1bit[13]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO14 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[14]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[14]), .Q_i(Q_1bit[14]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO15 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[15]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[15]), .Q_i(Q_1bit[15]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO16 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[16]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[16]), .Q_i(Q_1bit[16]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO17 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[17]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[17]), .Q_i(Q_1bit[17]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO18 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[18]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[18]), .Q_i(Q_1bit[18]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO19 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[19]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[19]), .Q_i(Q_1bit[19]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO20 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[20]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[20]), .Q_i(Q_1bit[20]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO21 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[21]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[21]), .Q_i(Q_1bit[21]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO22 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[22]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[22]), .Q_i(Q_1bit[22]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO23 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[23]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[23]), .Q_i(Q_1bit[23]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO24 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[24]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[24]), .Q_i(Q_1bit[24]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO25 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[25]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[25]), .Q_i(Q_1bit[25]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO26 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[26]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[26]), .Q_i(Q_1bit[26]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO27 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[27]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[27]), .Q_i(Q_1bit[27]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO28 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[28]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[28]), .Q_i(Q_1bit[28]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO29 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[29]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[29]), .Q_i(Q_1bit[29]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO30 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[30]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[30]), .Q_i(Q_1bit[30]) );
+    instance = TS6N16FFCLLSVTA32X32M4FW_RAM_1bit  sram_IO31 
+    ( .SD_i(SD), .DSLP_i(DSLP), .SLP_i(SLP), .AWT_i(AWT), .CLKR_i(CLKR), .CLKW_i(CLKW), .REB_i(iREB), .WEB_i(iWEB), .BWEB_i(iBWEB[31]), .AA_i(iAA), .AB_i(iAB), .D_i(iD[31]), .Q_i(Q_1bit[31]) );
+
+    primitive = _mux mlc_mux_iAA_0 ( AA[0], AMA[0], BIST, iAA[0] );
+    primitive = _mux mlc_mux_iAB_0 ( AB[0], AMB[0], BIST, iAB[0] );
+    primitive = _mux mlc_mux_iAA_1 ( AA[1], AMA[1], BIST, iAA[1] );
+    primitive = _mux mlc_mux_iAB_1 ( AB[1], AMB[1], BIST, iAB[1] );
+    primitive = _mux mlc_mux_iAA_2 ( AA[2], AMA[2], BIST, iAA[2] );
+    primitive = _mux mlc_mux_iAB_2 ( AB[2], AMB[2], BIST, iAB[2] );
+    primitive = _mux mlc_mux_iAA_3 ( AA[3], AMA[3], BIST, iAA[3] );
+    primitive = _mux mlc_mux_iAB_3 ( AB[3], AMB[3], BIST, iAB[3] );
+    primitive = _mux mlc_mux_iAA_4 ( AA[4], AMA[4], BIST, iAA[4] );
+    primitive = _mux mlc_mux_iAB_4 ( AB[4], AMB[4], BIST, iAB[4] );
+
+    primitive = _mux mlc_mux_iD_0 ( D[0], DM[0], BIST, iD[0] );
+    primitive = _mux mlc_mux_iBWEB_0 ( BWEB[0], BWEBM[0], BIST, iBWEB[0] );
+    primitive = _xor u1_x_0 ( iD[0], iBWEB[0], Q_awt[0] );    
+
+    primitive = _mux mlc_mux_iD_1 ( D[1], DM[1], BIST, iD[1] );
+    primitive = _mux mlc_mux_iBWEB_1 ( BWEB[1], BWEBM[1], BIST, iBWEB[1] );
+    primitive = _xor u1_x_1 ( iD[1], iBWEB[1], Q_awt[1] );    
+
+    primitive = _mux mlc_mux_iD_2 ( D[2], DM[2], BIST, iD[2] );
+    primitive = _mux mlc_mux_iBWEB_2 ( BWEB[2], BWEBM[2], BIST, iBWEB[2] );
+    primitive = _xor u1_x_2 ( iD[2], iBWEB[2], Q_awt[2] );    
+
+    primitive = _mux mlc_mux_iD_3 ( D[3], DM[3], BIST, iD[3] );
+    primitive = _mux mlc_mux_iBWEB_3 ( BWEB[3], BWEBM[3], BIST, iBWEB[3] );
+    primitive = _xor u1_x_3 ( iD[3], iBWEB[3], Q_awt[3] );    
+
+    primitive = _mux mlc_mux_iD_4 ( D[4], DM[4], BIST, iD[4] );
+    primitive = _mux mlc_mux_iBWEB_4 ( BWEB[4], BWEBM[4], BIST, iBWEB[4] );
+    primitive = _xor u1_x_4 ( iD[4], iBWEB[4], Q_awt[4] );    
+
+    primitive = _mux mlc_mux_iD_5 ( D[5], DM[5], BIST, iD[5] );
+    primitive = _mux mlc_mux_iBWEB_5 ( BWEB[5], BWEBM[5], BIST, iBWEB[5] );
+    primitive = _xor u1_x_5 ( iD[5], iBWEB[5], Q_awt[5] );    
+
+    primitive = _mux mlc_mux_iD_6 ( D[6], DM[6], BIST, iD[6] );
+    primitive = _mux mlc_mux_iBWEB_6 ( BWEB[6], BWEBM[6], BIST, iBWEB[6] );
+    primitive = _xor u1_x_6 ( iD[6], iBWEB[6], Q_awt[6] );    
+
+    primitive = _mux mlc_mux_iD_7 ( D[7], DM[7], BIST, iD[7] );
+    primitive = _mux mlc_mux_iBWEB_7 ( BWEB[7], BWEBM[7], BIST, iBWEB[7] );
+    primitive = _xor u1_x_7 ( iD[7], iBWEB[7], Q_awt[7] );    
+
+    primitive = _mux mlc_mux_iD_8 ( D[8], DM[8], BIST, iD[8] );
+    primitive = _mux mlc_mux_iBWEB_8 ( BWEB[8], BWEBM[8], BIST, iBWEB[8] );
+    primitive = _xor u1_x_8 ( iD[8], iBWEB[8], Q_awt[8] );    
+
+    primitive = _mux mlc_mux_iD_9 ( D[9], DM[9], BIST, iD[9] );
+    primitive = _mux mlc_mux_iBWEB_9 ( BWEB[9], BWEBM[9], BIST, iBWEB[9] );
+    primitive = _xor u1_x_9 ( iD[9], iBWEB[9], Q_awt[9] );    
+
+    primitive = _mux mlc_mux_iD_10 ( D[10], DM[10], BIST, iD[10] );
+    primitive = _mux mlc_mux_iBWEB_10 ( BWEB[10], BWEBM[10], BIST, iBWEB[10] );
+    primitive = _xor u1_x_10 ( iD[10], iBWEB[10], Q_awt[10] );    
+
+    primitive = _mux mlc_mux_iD_11 ( D[11], DM[11], BIST, iD[11] );
+    primitive = _mux mlc_mux_iBWEB_11 ( BWEB[11], BWEBM[11], BIST, iBWEB[11] );
+    primitive = _xor u1_x_11 ( iD[11], iBWEB[11], Q_awt[11] );    
+
+    primitive = _mux mlc_mux_iD_12 ( D[12], DM[12], BIST, iD[12] );
+    primitive = _mux mlc_mux_iBWEB_12 ( BWEB[12], BWEBM[12], BIST, iBWEB[12] );
+    primitive = _xor u1_x_12 ( iD[12], iBWEB[12], Q_awt[12] );    
+
+    primitive = _mux mlc_mux_iD_13 ( D[13], DM[13], BIST, iD[13] );
+    primitive = _mux mlc_mux_iBWEB_13 ( BWEB[13], BWEBM[13], BIST, iBWEB[13] );
+    primitive = _xor u1_x_13 ( iD[13], iBWEB[13], Q_awt[13] );    
+
+    primitive = _mux mlc_mux_iD_14 ( D[14], DM[14], BIST, iD[14] );
+    primitive = _mux mlc_mux_iBWEB_14 ( BWEB[14], BWEBM[14], BIST, iBWEB[14] );
+    primitive = _xor u1_x_14 ( iD[14], iBWEB[14], Q_awt[14] );    
+
+    primitive = _mux mlc_mux_iD_15 ( D[15], DM[15], BIST, iD[15] );
+    primitive = _mux mlc_mux_iBWEB_15 ( BWEB[15], BWEBM[15], BIST, iBWEB[15] );
+    primitive = _xor u1_x_15 ( iD[15], iBWEB[15], Q_awt[15] );    
+
+    primitive = _mux mlc_mux_iD_16 ( D[16], DM[16], BIST, iD[16] );
+    primitive = _mux mlc_mux_iBWEB_16 ( BWEB[16], BWEBM[16], BIST, iBWEB[16] );
+    primitive = _xor u1_x_16 ( iD[16], iBWEB[16], Q_awt[16] );    
+
+    primitive = _mux mlc_mux_iD_17 ( D[17], DM[17], BIST, iD[17] );
+    primitive = _mux mlc_mux_iBWEB_17 ( BWEB[17], BWEBM[17], BIST, iBWEB[17] );
+    primitive = _xor u1_x_17 ( iD[17], iBWEB[17], Q_awt[17] );    
+
+    primitive = _mux mlc_mux_iD_18 ( D[18], DM[18], BIST, iD[18] );
+    primitive = _mux mlc_mux_iBWEB_18 ( BWEB[18], BWEBM[18], BIST, iBWEB[18] );
+    primitive = _xor u1_x_18 ( iD[18], iBWEB[18], Q_awt[18] );    
+
+    primitive = _mux mlc_mux_iD_19 ( D[19], DM[19], BIST, iD[19] );
+    primitive = _mux mlc_mux_iBWEB_19 ( BWEB[19], BWEBM[19], BIST, iBWEB[19] );
+    primitive = _xor u1_x_19 ( iD[19], iBWEB[19], Q_awt[19] );    
+
+    primitive = _mux mlc_mux_iD_20 ( D[20], DM[20], BIST, iD[20] );
+    primitive = _mux mlc_mux_iBWEB_20 ( BWEB[20], BWEBM[20], BIST, iBWEB[20] );
+    primitive = _xor u1_x_20 ( iD[20], iBWEB[20], Q_awt[20] );    
+
+    primitive = _mux mlc_mux_iD_21 ( D[21], DM[21], BIST, iD[21] );
+    primitive = _mux mlc_mux_iBWEB_21 ( BWEB[21], BWEBM[21], BIST, iBWEB[21] );
+    primitive = _xor u1_x_21 ( iD[21], iBWEB[21], Q_awt[21] );    
+
+    primitive = _mux mlc_mux_iD_22 ( D[22], DM[22], BIST, iD[22] );
+    primitive = _mux mlc_mux_iBWEB_22 ( BWEB[22], BWEBM[22], BIST, iBWEB[22] );
+    primitive = _xor u1_x_22 ( iD[22], iBWEB[22], Q_awt[22] );    
+
+    primitive = _mux mlc_mux_iD_23 ( D[23], DM[23], BIST, iD[23] );
+    primitive = _mux mlc_mux_iBWEB_23 ( BWEB[23], BWEBM[23], BIST, iBWEB[23] );
+    primitive = _xor u1_x_23 ( iD[23], iBWEB[23], Q_awt[23] );    
+
+    primitive = _mux mlc_mux_iD_24 ( D[24], DM[24], BIST, iD[24] );
+    primitive = _mux mlc_mux_iBWEB_24 ( BWEB[24], BWEBM[24], BIST, iBWEB[24] );
+    primitive = _xor u1_x_24 ( iD[24], iBWEB[24], Q_awt[24] );    
+
+    primitive = _mux mlc_mux_iD_25 ( D[25], DM[25], BIST, iD[25] );
+    primitive = _mux mlc_mux_iBWEB_25 ( BWEB[25], BWEBM[25], BIST, iBWEB[25] );
+    primitive = _xor u1_x_25 ( iD[25], iBWEB[25], Q_awt[25] );    
+
+    primitive = _mux mlc_mux_iD_26 ( D[26], DM[26], BIST, iD[26] );
+    primitive = _mux mlc_mux_iBWEB_26 ( BWEB[26], BWEBM[26], BIST, iBWEB[26] );
+    primitive = _xor u1_x_26 ( iD[26], iBWEB[26], Q_awt[26] );    
+
+    primitive = _mux mlc_mux_iD_27 ( D[27], DM[27], BIST, iD[27] );
+    primitive = _mux mlc_mux_iBWEB_27 ( BWEB[27], BWEBM[27], BIST, iBWEB[27] );
+    primitive = _xor u1_x_27 ( iD[27], iBWEB[27], Q_awt[27] );    
+
+    primitive = _mux mlc_mux_iD_28 ( D[28], DM[28], BIST, iD[28] );
+    primitive = _mux mlc_mux_iBWEB_28 ( BWEB[28], BWEBM[28], BIST, iBWEB[28] );
+    primitive = _xor u1_x_28 ( iD[28], iBWEB[28], Q_awt[28] );    
+
+    primitive = _mux mlc_mux_iD_29 ( D[29], DM[29], BIST, iD[29] );
+    primitive = _mux mlc_mux_iBWEB_29 ( BWEB[29], BWEBM[29], BIST, iBWEB[29] );
+    primitive = _xor u1_x_29 ( iD[29], iBWEB[29], Q_awt[29] );    
+
+    primitive = _mux mlc_mux_iD_30 ( D[30], DM[30], BIST, iD[30] );
+    primitive = _mux mlc_mux_iBWEB_30 ( BWEB[30], BWEBM[30], BIST, iBWEB[30] );
+    primitive = _xor u1_x_30 ( iD[30], iBWEB[30], Q_awt[30] );    
+
+    primitive = _mux mlc_mux_iD_31 ( D[31], DM[31], BIST, iD[31] );
+    primitive = _mux mlc_mux_iBWEB_31 ( BWEB[31], BWEBM[31], BIST, iBWEB[31] );
+    primitive = _xor u1_x_31 ( iD[31], iBWEB[31], Q_awt[31] );    
+
+    primitive = _tiex mlc_tiex ( mlc_tiex );
+    primitive = _or mlc_or_1 ( SD, DSLP, SLP, power_down );
+    primitive = _mux mlc_mux_Q_int_0 ( Q_1bit[0], Q_awt[0], AWT, Q_int[0] );
+    primitive = _mux mlc_mux_Q_0 ( Q_int[0], mlc_tiex, power_down, Q[0] );    
+
+    primitive = _mux mlc_mux_Q_int_1 ( Q_1bit[1], Q_awt[1], AWT, Q_int[1] );
+    primitive = _mux mlc_mux_Q_1 ( Q_int[1], mlc_tiex, power_down, Q[1] );    
+
+    primitive = _mux mlc_mux_Q_int_2 ( Q_1bit[2], Q_awt[2], AWT, Q_int[2] );
+    primitive = _mux mlc_mux_Q_2 ( Q_int[2], mlc_tiex, power_down, Q[2] );    
+
+    primitive = _mux mlc_mux_Q_int_3 ( Q_1bit[3], Q_awt[3], AWT, Q_int[3] );
+    primitive = _mux mlc_mux_Q_3 ( Q_int[3], mlc_tiex, power_down, Q[3] );    
+
+    primitive = _mux mlc_mux_Q_int_4 ( Q_1bit[4], Q_awt[4], AWT, Q_int[4] );
+    primitive = _mux mlc_mux_Q_4 ( Q_int[4], mlc_tiex, power_down, Q[4] );    
+
+    primitive = _mux mlc_mux_Q_int_5 ( Q_1bit[5], Q_awt[5], AWT, Q_int[5] );
+    primitive = _mux mlc_mux_Q_5 ( Q_int[5], mlc_tiex, power_down, Q[5] );    
+
+    primitive = _mux mlc_mux_Q_int_6 ( Q_1bit[6], Q_awt[6], AWT, Q_int[6] );
+    primitive = _mux mlc_mux_Q_6 ( Q_int[6], mlc_tiex, power_down, Q[6] );    
+
+    primitive = _mux mlc_mux_Q_int_7 ( Q_1bit[7], Q_awt[7], AWT, Q_int[7] );
+    primitive = _mux mlc_mux_Q_7 ( Q_int[7], mlc_tiex, power_down, Q[7] );    
+
+    primitive = _mux mlc_mux_Q_int_8 ( Q_1bit[8], Q_awt[8], AWT, Q_int[8] );
+    primitive = _mux mlc_mux_Q_8 ( Q_int[8], mlc_tiex, power_down, Q[8] );    
+
+    primitive = _mux mlc_mux_Q_int_9 ( Q_1bit[9], Q_awt[9], AWT, Q_int[9] );
+    primitive = _mux mlc_mux_Q_9 ( Q_int[9], mlc_tiex, power_down, Q[9] );    
+
+    primitive = _mux mlc_mux_Q_int_10 ( Q_1bit[10], Q_awt[10], AWT, Q_int[10] );
+    primitive = _mux mlc_mux_Q_10 ( Q_int[10], mlc_tiex, power_down, Q[10] );    
+
+    primitive = _mux mlc_mux_Q_int_11 ( Q_1bit[11], Q_awt[11], AWT, Q_int[11] );
+    primitive = _mux mlc_mux_Q_11 ( Q_int[11], mlc_tiex, power_down, Q[11] );    
+
+    primitive = _mux mlc_mux_Q_int_12 ( Q_1bit[12], Q_awt[12], AWT, Q_int[12] );
+    primitive = _mux mlc_mux_Q_12 ( Q_int[12], mlc_tiex, power_down, Q[12] );    
+
+    primitive = _mux mlc_mux_Q_int_13 ( Q_1bit[13], Q_awt[13], AWT, Q_int[13] );
+    primitive = _mux mlc_mux_Q_13 ( Q_int[13], mlc_tiex, power_down, Q[13] );    
+
+    primitive = _mux mlc_mux_Q_int_14 ( Q_1bit[14], Q_awt[14], AWT, Q_int[14] );
+    primitive = _mux mlc_mux_Q_14 ( Q_int[14], mlc_tiex, power_down, Q[14] );    
+
+    primitive = _mux mlc_mux_Q_int_15 ( Q_1bit[15], Q_awt[15], AWT, Q_int[15] );
+    primitive = _mux mlc_mux_Q_15 ( Q_int[15], mlc_tiex, power_down, Q[15] );    
+
+    primitive = _mux mlc_mux_Q_int_16 ( Q_1bit[16], Q_awt[16], AWT, Q_int[16] );
+    primitive = _mux mlc_mux_Q_16 ( Q_int[16], mlc_tiex, power_down, Q[16] );    
+
+    primitive = _mux mlc_mux_Q_int_17 ( Q_1bit[17], Q_awt[17], AWT, Q_int[17] );
+    primitive = _mux mlc_mux_Q_17 ( Q_int[17], mlc_tiex, power_down, Q[17] );    
+
+    primitive = _mux mlc_mux_Q_int_18 ( Q_1bit[18], Q_awt[18], AWT, Q_int[18] );
+    primitive = _mux mlc_mux_Q_18 ( Q_int[18], mlc_tiex, power_down, Q[18] );    
+
+    primitive = _mux mlc_mux_Q_int_19 ( Q_1bit[19], Q_awt[19], AWT, Q_int[19] );
+    primitive = _mux mlc_mux_Q_19 ( Q_int[19], mlc_tiex, power_down, Q[19] );    
+
+    primitive = _mux mlc_mux_Q_int_20 ( Q_1bit[20], Q_awt[20], AWT, Q_int[20] );
+    primitive = _mux mlc_mux_Q_20 ( Q_int[20], mlc_tiex, power_down, Q[20] );    
+
+    primitive = _mux mlc_mux_Q_int_21 ( Q_1bit[21], Q_awt[21], AWT, Q_int[21] );
+    primitive = _mux mlc_mux_Q_21 ( Q_int[21], mlc_tiex, power_down, Q[21] );    
+
+    primitive = _mux mlc_mux_Q_int_22 ( Q_1bit[22], Q_awt[22], AWT, Q_int[22] );
+    primitive = _mux mlc_mux_Q_22 ( Q_int[22], mlc_tiex, power_down, Q[22] );    
+
+    primitive = _mux mlc_mux_Q_int_23 ( Q_1bit[23], Q_awt[23], AWT, Q_int[23] );
+    primitive = _mux mlc_mux_Q_23 ( Q_int[23], mlc_tiex, power_down, Q[23] );    
+
+    primitive = _mux mlc_mux_Q_int_24 ( Q_1bit[24], Q_awt[24], AWT, Q_int[24] );
+    primitive = _mux mlc_mux_Q_24 ( Q_int[24], mlc_tiex, power_down, Q[24] );    
+
+    primitive = _mux mlc_mux_Q_int_25 ( Q_1bit[25], Q_awt[25], AWT, Q_int[25] );
+    primitive = _mux mlc_mux_Q_25 ( Q_int[25], mlc_tiex, power_down, Q[25] );    
+
+    primitive = _mux mlc_mux_Q_int_26 ( Q_1bit[26], Q_awt[26], AWT, Q_int[26] );
+    primitive = _mux mlc_mux_Q_26 ( Q_int[26], mlc_tiex, power_down, Q[26] );    
+
+    primitive = _mux mlc_mux_Q_int_27 ( Q_1bit[27], Q_awt[27], AWT, Q_int[27] );
+    primitive = _mux mlc_mux_Q_27 ( Q_int[27], mlc_tiex, power_down, Q[27] );    
+
+    primitive = _mux mlc_mux_Q_int_28 ( Q_1bit[28], Q_awt[28], AWT, Q_int[28] );
+    primitive = _mux mlc_mux_Q_28 ( Q_int[28], mlc_tiex, power_down, Q[28] );    
+
+    primitive = _mux mlc_mux_Q_int_29 ( Q_1bit[29], Q_awt[29], AWT, Q_int[29] );
+    primitive = _mux mlc_mux_Q_29 ( Q_int[29], mlc_tiex, power_down, Q[29] );    
+
+    primitive = _mux mlc_mux_Q_int_30 ( Q_1bit[30], Q_awt[30], AWT, Q_int[30] );
+    primitive = _mux mlc_mux_Q_30 ( Q_int[30], mlc_tiex, power_down, Q[30] );    
+
+    primitive = _mux mlc_mux_Q_int_31 ( Q_1bit[31], Q_awt[31], AWT, Q_int[31] );
+    primitive = _mux mlc_mux_Q_31 ( Q_int[31], mlc_tiex, power_down, Q[31] );    
+
+  )
+)

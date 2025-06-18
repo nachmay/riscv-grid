@@ -1,0 +1,207 @@
+
+// 
+//###############################################################################
+//#                                                    
+//#        Technology     : TSMC 16nm CMOS Logic FinFet (FFC) HKMG
+//#        Memory Type    : TSMC 16nm FFC Two Port Register File with d130 bit cell
+//#        Library Name   : ts6n16ffcllsvta8x32m1fw (user specify : ts6n16ffcllsvta8x32m1fw)
+//#        Library Version: 170a
+//#        Generated Time : 2025/06/18, 13:10:29
+//###############################################################################
+//# STATEMENT OF USE                                                             
+//#                                                                              
+//#  This information contains confidential and proprietary information of TSMC. 
+//# No part of this information may be reproduced, transmitted, transcribed,     
+//# stored in a retrieval system, or translated into any human or computer       
+//# language, in any form or by any means, electronic, mechanical, magnetic,     
+//# optical, chemical, manual, or otherwise, without the prior written permission
+//# of TSMC. This information was prepared for informational purpose and is for  
+//# use by TSMC's customers only. TSMC reserves the right to make changes in the 
+//# inforrmation at any time and without notice.                                 
+//
+//###############################################################################
+//VERSION 5.7 ;
+//BUSBITCHARS "[]" ;
+//DIVIDERCHAR "/" ;
+//*#*Template Version : S_06_40701***************************************************************/
+//*#**********************************************************************************************/
+
+//------------------------------------------------------------------------------
+memory_name = "TS6N16FFCLLSVTA8X32M1FW"
+masis_version = "masis_1.2"
+
+//This section contains memory general parameters
+GeneralParameters {
+    PortTypeNum {
+        ReadPortNum = 1
+        WritePortNum = 1
+    }
+    MemoryType = "SRAM"
+    NumberOfBits = 32
+    NumberOfWords = 8
+    ReadType = "Synchronous"
+    MaxHoldTime =  0.5 
+    PowerDissipation = 0.0017
+} // end of section GeneralParameters 
+
+Port {
+    CLKW {
+        Tag = Clock
+        Direction = Input
+        PortId = "A"
+    }
+    CLKR {
+        Tag = Clock
+        Direction = Input
+        PortId = "B"
+    }
+    AA {
+        Tag = Address
+        Range = "[2:0]"
+        Direction = Input
+        PortId = "A"
+    }
+    AB {
+        Tag = Address
+        Range = "[2:0]"
+        Direction = Input
+        PortId = "B"
+    }
+    D {
+        Tag = Data
+        Range = "[31:0]"
+        Direction = Input
+        PortId = "A"
+    }
+    BWEB {
+        Tag = WriteEnMask
+        Range =  "[31:0]"
+        ActiveLevel = False
+        Direction = Input
+        PortId = "A"
+    }    
+    WEB {
+        Tag = WriteEnable
+        ActiveLevel = False
+        Direction = Input
+        PortId = "A"
+    } 
+    REB {
+        Tag = ReadEnable
+        ActiveLevel = False
+        Direction = Input
+        PortId = "B"
+    } 
+    Q {
+        Tag = Data
+        Range = "[31:0]"
+        Direction = Output
+        PortId = "B"
+    }
+    RCT {
+        Tag = None
+        Direction = Input
+        Range = "[1:0]"
+        SafeValue = "2'b01"
+        TieLevel =  TestBench
+    }
+    WCT {
+        Tag = None
+        Direction = Input
+        Range = "[1:0]"
+        SafeValue = "2'b01"
+        TieLevel =  TestBench
+    }
+    KP {
+        Tag = None
+        Direction = Input
+        Range = "[2:0]"
+        SafeValue = "3'b011"
+        TieLevel =  TestBench
+    }
+}
+
+//This section contains description of memory address bus
+AddressCounter  {
+    ColumnMultiplexing = 1
+    RowAddressRange = "[0:7]"
+    AddressScrambleMap = " RowAddress[2] RowAddress[1] RowAddress[0]"
+}  // end of section AddressCounter 
+
+ErrorInjection {
+    RunTimeErrorInjection {
+        CompilationMacroName = "TSMC_INITIALIZE_FAULT"
+    }
+}
+
+
+
+StructuralInfo {
+    NumberOfRows = 8
+    NumberOfColumns = 32
+    NumberOfColumnsInLeft = 16
+    NumberOfColumnsInRight = 16
+    InstanceOrientation = "r90"
+
+    AddressScramble {
+        AddressBus = { XA0 XA1 XA2}
+        PhysicalRowSequence = {0 1 2 3 4 5 6 7}
+        PhysicalColumnSequence = {{0 0} {1 0} {2 0} {3 0} {4 0} {5 0} {6 0} {7 0} {8 0} {9 0} {10 0} {11 0} {12 0} {13 0} {14 0} {15 0} {16 0} {17 0} {18 0} {19 0} {20 0} {21 0} {22 0} {23 0} {24 0} {25 0} {26 0} {27 0} {28 0} {29 0} {30 0} {31 0}}
+        ColumnTwisting = { }
+    } //end of Address Scramble section
+    BitLineMirroring {
+        IOBitLineMirroring = {TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT}        
+        BitLineReordering = {0 {TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT TB BT}}
+        BitLineTwisting = { }
+    } //end of BitLineMirroring 
+    RowDistribution = { m 8  }
+    ColumnDistribution = {  m 16 m 16 }
+    DataScramble {
+        PhysicalIOSequence = { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 }
+    } //end of Data Scramble section
+    BitcellHeight = 0.1800 
+    BitcellWidth = 0.7200
+
+    StrapDistribution {        
+        Strap_0 {
+            StrapName = "LEFT"
+            StrapSize = 0.9840
+            StrapOrientation = "VERTICAL"
+            StrapPosition = 0
+        } // end of Strap_0
+        Strap_1 {
+            StrapName = "MIDDLE"
+            StrapSize = 18.6720
+            StrapOrientation = "VERTICAL"
+            StrapPosition = 16
+        } // end of Strap_1
+        Strap_2 {
+            StrapName = "RIGHT"
+            StrapSize = 0.9840
+            StrapOrientation = "VERTICAL"
+            StrapPosition = 32
+        } // end of Strap_2
+        Strap_3 {
+            StrapName = "H__BOTTOM"
+            StrapSize = 13.3100
+            StrapOrientation = "HORIZONTAL"
+            StrapPosition = 0
+        } // end of Strap_3
+        Strap_4 {
+            StrapName = "H_TOP"
+            StrapSize = 4.3670
+            StrapOrientation = "HORIZONTAL"
+            StrapPosition = 8
+        } // end of Strap_4
+    } //end of Strap Distribution section
+} // end of section StructuralInfo
+
+//MIV_begin
+//pt_cells = MCB_D130_TIEL MCB_D130_TIEH
+//pt_cell = S6ALLSVTFW8U20_MASIS_DUMMY_MCB
+
+//dx = 720.0000
+//dy = 180.0000
+
+//instance_orientation = r90
+//MIV_end

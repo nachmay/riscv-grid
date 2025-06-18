@@ -31,14 +31,13 @@ read_hdl -sv \
         TARGET_SYNTHESIS \
     } \
     [list \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/rptr_empty.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/fifomem.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/sync_ptr.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/sync_r2w.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/sync_w2r.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/wptr_full.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/async_fifo.sv" \
-        "$ROOT/rtl/ipr_dir/sv_ipr/rtl/ipr.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/rptr_empty.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/sync_ptr.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/sync_r2w.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/sync_w2r.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/wptr_full.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/async_fifo.sv" \
+        "$ROOT/rtl/ipr_dir/sv_ipr/rtl_syn/ipr_cntrl.sv" \
     ]
 
 

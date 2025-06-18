@@ -58,8 +58,8 @@ module ipr #(
   assign write_gnt_evt = write_if.req && write_if.we && !write_inflight && !fifo_full;
 
   assign we = write_if.req && write_if.we;
-  assign re = read_gnt_dly && !reg_offset_read;
-
+  //assign re = read_gnt_dly && !reg_offset_read;
+  assign re = read_gnt_dly; 
 /*
   always_ff @(posedge r_clk or negedge r_rst_n) begin
     if (!r_rst_n)
@@ -98,8 +98,8 @@ module ipr #(
       .rinc(re),
       .rdata(read_if.rdata),
       .rempty(fifo_empty),
-      .arempty(fifo_almost_empty)
-      //.error_flag(error_flag)
+      .arempty(fifo_almost_empty),
+      .rinc_mem(read_gnt_evt)
   );
 
   

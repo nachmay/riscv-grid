@@ -1,7 +1,7 @@
 ############## Defining Clocks ##############
 
 # Define the primary clock (clk_i) for the top module 'riscv_core'
-set clock_period 0.56
+set clock_period 2
 create_clock \
       -name clk \
       -period $clock_period \
