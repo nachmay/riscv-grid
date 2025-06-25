@@ -1,0 +1,109 @@
+//*#******************************************************************************************************************************/
+//*# Software       : TSMC MEMORY COMPILER tsn16ffcll1prf_2013.12.00.120a 								*/
+//*# Technology     : TSMC 16nm CMOS Logic FinFet Compact (FFC) HKMG                                                             */
+//*# Memory Type    : TSMC 16nm FFC One Port Register File with d0907 bit cell                                        	     */
+//*# Library Name   : ts5n16ffcllsvta8x128m1sw (user specify : TS5N16FFCLLSVTA8X128M1SW)				*/
+//*# Library Version: 120a													*/
+//*# Generated Time : 2025/06/23, 09:41:36										  	*/
+//*#******************************************************************************************************************************/
+//*#														    		*/
+//*# STATEMENT OF USE												    		*/
+//*#														    		*/
+//*# This information contains confidential and proprietary information of TSMC.                                   		*/
+//*# No part of this information may be reproduced, transmitted, transcribed,					     		*/
+//*# stored in a retrieval system, or translated into any human or computer					    		*/
+//*# language, in any form or by any means, electronic, mechanical, magnetic,					    		*/
+//*# optical, chemical, manual, or otherwise, without the prior written permission                                  		*/
+//*# of TSMC. This information was prepared for informational purpose and is for				      			*/
+//*# use by TSMC's customers only. TSMC reserves the right to make changes in the				      		*/
+//*# information at any time and without notice.								      			*/
+//*#														 		*/
+//*#******************************************************************************************************************************/
+
+//* Template Version : S_09_74901   
+MemoryTemplate (TS5N16FFCLLSVTA8X128M1SW) {
+
+      CellName        : TS5N16FFCLLSVTA8X128M1SW;
+      Algorithm       : SMarchCHKBvcd;
+      logicalPorts    : 1rw;
+      NumberOfWords   : 8;
+      MinHold         : 0.5;
+      MilliWattsPerMegaHertz : 0.005;
+      TransparentMode : None; 		//User options for DFT:
+      					// AsyncMux: 	for low speed scan
+					// SyncMux: 	for at-speed scan
+					// AsyncWriteThru: if there is AWT in this memory
+      
+
+      Port (CLK)  {
+          Function: Clock;
+      }
+      Port (CEB)  {
+                    Function: Select;
+	            Polarity: ActiveLow;	
+
+      }
+
+      Port (WEB) {
+            Function: WriteEnable; 
+	    Polarity: ActiveLow;
+
+      }
+
+      Port (BWEB[127:0]) {
+            Function: GroupWriteEnable; 
+	    Polarity: ActiveLow;
+
+      }
+
+      Port (D[127:0]) { 
+          Function: Data; 
+          Direction:   Input;
+      }
+      Port (Q[127:0]) { 
+          Function: Data; 
+          Direction:   Output; 
+      }
+      port (A[2:0]) {
+          function:    address;
+      }
+
+
+
+
+
+
+
+      Port (RTSEL[1:0]) {
+          Direction : Input;
+	  function  : None;
+    SafeValue : 2'b01;
+      }
+      Port (WTSEL[1:0]) {
+          Direction : Input;
+	  function  : None;
+    SafeValue : 2'b01;
+      }
+
+
+// number of rows by number of columns.
+      AddressCounter {
+          Function ( Address ) {
+	  LogicalAddressMap {
+	
+	
+	  RowAddress[2:0]:Address[2:0];  // number of rows
+	  }
+	  }
+	
+	
+          Function  ( RowAddress ) {
+          CountRange[0:7];
+          }
+      }
+
+
+
+      OperationSet : syncWR;
+      bitGrouping : 1;
+}

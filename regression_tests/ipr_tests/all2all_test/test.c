@@ -11,7 +11,7 @@
 
 #define NUM_WORDS_STACK  32
 #define NUM_WORDS 32
-#define NUM_ITER 1
+#define NUM_ITER 20
 
 
 int main() {
@@ -74,10 +74,10 @@ int main() {
         // Writer: enqueue via memory-mapped IPR_EAST_ADDR
         for (int iter = 0; iter < NUM_ITER; iter++) {
             for (int i = 0; i < NUM_WORDS_STACK; i++) {
-                *enq_west_ptr  = values_to_write_0[i];
                 *enq_south_ptr  = values_to_write_0[i];
-                uint32_t val_0 = *deq_west_ptr;
+                *enq_west_ptr  = values_to_write_0[i];
                 uint32_t val_1 = *deq_south_ptr;
+                uint32_t val_0 = *deq_west_ptr;
             }
         }
     }
@@ -87,10 +87,10 @@ int main() {
         // Writer: enqueue via memory-mapped IPR_EAST_ADDR
         for (int iter = 0; iter < NUM_ITER; iter++) {
             for (int i = 0; i < NUM_WORDS_STACK; i++) {
-                *enq_east_ptr  = values_to_write_1[i];
                 *enq_south_ptr  = values_to_write_1[i];
-                uint32_t val_0 = *deq_east_ptr;
+                *enq_east_ptr  = values_to_write_1[i];
                 uint32_t val_1 = *deq_south_ptr;
+                uint32_t val_0 = *deq_east_ptr;
             }
         }
     }
@@ -99,10 +99,10 @@ int main() {
         // Writer: enqueue via memory-mapped IPR_EAST_ADDR
         for (int iter = 0; iter < NUM_ITER; iter++) {
             for (int i = 0; i < NUM_WORDS_STACK; i++) {
-                *enq_west_ptr  = values_to_write_2[i];
                 *enq_north_ptr  = values_to_write_2[i];
-                uint32_t val_0 = *deq_west_ptr;
+                *enq_west_ptr  = values_to_write_2[i];
                 uint32_t val_1 = *deq_north_ptr;
+                uint32_t val_0 = *deq_west_ptr;
             }
         }
     }
@@ -111,10 +111,10 @@ int main() {
         // Writer: enqueue via memory-mapped IPR_EAST_ADDR
         for (int iter = 0; iter < NUM_ITER; iter++) {
             for (int i = 0; i < NUM_WORDS_STACK; i++) {
-                *enq_east_ptr  = values_to_write_3[i];
                 *enq_north_ptr  = values_to_write_3[i];
-                uint32_t val_0 = *deq_east_ptr;
+                *enq_east_ptr  = values_to_write_3[i];
                 uint32_t val_1 = *deq_north_ptr;
+                uint32_t val_0 = *deq_east_ptr;
             }
         }
     }
@@ -126,6 +126,8 @@ int main() {
 
     return 0;
 }
+
+
 
 
 

@@ -835,7 +835,7 @@ ipr_fifo fifo_west_i (
 // asynchroneous fifo
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
    .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
@@ -852,7 +852,7 @@ ipr #(
 
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
    .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
@@ -868,7 +868,7 @@ ipr #(
 
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
    .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
@@ -884,7 +884,7 @@ ipr #(
 
 ipr #(
    .DSIZE ( 32),            // Data width (int for SV)
-   .ASIZE (10),            // Address size (FIFO depth = 2^ASIZE)
+   .ASIZE (3),            // Address size (FIFO depth = 2^ASIZE)
    .FALLTHROUGH (1), // First word fall-through (string type)
    .WATCHDOG_LIMIT (1000),  // Cycles without rinc to trigger flush
    .BULK_NUMBER (10)      // number of massagaes to dequeue when they not get read for whatchdog limit cycles
