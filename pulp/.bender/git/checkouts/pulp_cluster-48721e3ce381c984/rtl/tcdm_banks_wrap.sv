@@ -57,7 +57,7 @@ module tcdm_banks_wrap #(
       .NumPorts   (1        ), // Number of read and write ports
       .Latency    (1        ), // Latency when the read data is available
       .SimInit    ("ones"   ), // Simulation initialization
-      .PrintSimCfg(1       )  // Print configuration
+      .PrintSimCfg(0        )  // Print configuration
     ) i_bank (
       .clk_i  (clk_i                                    ), // Clock
       .rst_ni (rst_ni                                   ), // Asynchronous reset active low

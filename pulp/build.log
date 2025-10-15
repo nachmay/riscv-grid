@@ -1,22 +1,22 @@
 cp setup/hdl.var sim
 cp setup/cds.lib sim
-echo "DEFINE worklib /project/tsmc16/users/iday/ws/git/riscv-grid/pulp/sim/worklib" >> /project/tsmc16/users/iday/ws/git/riscv-grid/pulp/sim/cds.lib
-echo "DEFINE WORK worklib" >> /project/tsmc16/users/iday/ws/git/riscv-grid/pulp/sim/hdl.var
+echo "DEFINE worklib /project/tsmc16/users/abergen/aura/riscv-grid/pulp/sim/worklib" >> /project/tsmc16/users/abergen/aura/riscv-grid/pulp/sim/cds.lib
+echo "DEFINE WORK worklib" >> /project/tsmc16/users/abergen/aura/riscv-grid/pulp/sim/hdl.var
 make -C sim all-xcelium
-make[1]: Entering directory '/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/sim'
+make[1]: Entering directory '/project/tsmc16/users/abergen/aura/riscv-grid/pulp/sim'
 make -C ../rtl/tb/remote_bitbang clean
-make[2]: Entering directory '/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/rtl/tb/remote_bitbang'
+make[2]: Entering directory '/project/tsmc16/users/abergen/aura/riscv-grid/pulp/rtl/tb/remote_bitbang'
 rm -rf librbs.so remote_bitbang.o sim_jtag.o ./.d
-make[2]: Leaving directory '/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/rtl/tb/remote_bitbang'
+make[2]: Leaving directory '/project/tsmc16/users/abergen/aura/riscv-grid/pulp/rtl/tb/remote_bitbang'
 make -C ../rtl/tb/remote_bitbang all
-make[2]: Entering directory '/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/rtl/tb/remote_bitbang'
+make[2]: Entering directory '/project/tsmc16/users/abergen/aura/riscv-grid/pulp/rtl/tb/remote_bitbang'
 cc -MT remote_bitbang.o -MMD -MP -MF ./.d/remote_bitbang.Td -std=gnu11 -fno-strict-aliasing -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-function -Wno-missing-braces -O2 -g -march=native -DENABLE_LOGGING -DNDEBUG -fPIC -I./  \
 	-c  remote_bitbang.c -o remote_bitbang.o 
 cc -MT sim_jtag.o -MMD -MP -MF ./.d/sim_jtag.Td -std=gnu11 -fno-strict-aliasing -Wall -Wextra -Wno-missing-field-initializers -Wno-unused-function -Wno-missing-braces -O2 -g -march=native -DENABLE_LOGGING -DNDEBUG -fPIC -I./  \
 	-c  sim_jtag.c -o sim_jtag.o 
 ld -shared -E --exclude-libs ALL -o librbs.so  \
 	remote_bitbang.o sim_jtag.o 
-make[2]: Leaving directory '/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/rtl/tb/remote_bitbang'
+make[2]: Leaving directory '/project/tsmc16/users/abergen/aura/riscv-grid/pulp/rtl/tb/remote_bitbang'
 ./xcelium_compile.sh
 xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
 xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
@@ -96,28 +96,28 @@ xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
 xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
     `define CLEAR_CNTS        6'b00_0100
                                         |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/mp_icache_ctrl_unit.sv,37|40): text macro 'CLEAR_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/icache_ctrl_unit.sv',40|22 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/mp_icache_ctrl_unit.sv,37|40): text macro 'CLEAR_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/icache_ctrl_unit.sv',40|22 ).
     `define ENABLE_CNTS       6'b00_0101
                                         |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/mp_icache_ctrl_unit.sv,38|40): text macro 'ENABLE_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/icache_ctrl_unit.sv',41|23 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/mp_icache_ctrl_unit.sv,38|40): text macro 'ENABLE_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/icache_ctrl_unit.sv',41|23 ).
     `define SEL_FLUSH_ICACHE  6'b00_0010 // W Only --> Selective FLush (use wdata for address)
                                                                                               |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv,36|94): text macro 'SEL_FLUSH_ICACHE' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/mp_pf_icache_ctrl_unit.sv',36|28 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv,36|94): text macro 'SEL_FLUSH_ICACHE' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/mp_pf_icache_ctrl_unit.sv',36|28 ).
     `define CLEAR_CNTS    6'b00_0011 
                                      |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv,36|37): text macro 'CLEAR_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv',40|22 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv,36|37): text macro 'CLEAR_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv',40|22 ).
     `define ENABLE_CNTS   6'b00_0100
                                     |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv,37|36): text macro 'ENABLE_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv',41|23 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv,37|36): text macro 'ENABLE_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv',41|23 ).
     `define SEL_FLUSH_ICACHE  6'b00_0011
                                         |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/sp_icache_ctrl_unit.sv,37|40): text macro 'SEL_FLUSH_ICACHE' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv',36|28 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/sp_icache_ctrl_unit.sv,37|40): text macro 'SEL_FLUSH_ICACHE' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/new_icache_ctrl_unit.sv',36|28 ).
     `define CLEAR_CNTS        6'b00_0100
                                         |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/sp_icache_ctrl_unit.sv,39|40): text macro 'CLEAR_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv',36|22 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/sp_icache_ctrl_unit.sv,39|40): text macro 'CLEAR_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv',36|22 ).
     `define ENABLE_CNTS       6'b00_0101
                                         |
-xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/sp_icache_ctrl_unit.sv,40|40): text macro 'ENABLE_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv',37|23 ).
+xmvlog: *W,MACRDF (../.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/sp_icache_ctrl_unit.sv,40|40): text macro 'ENABLE_CNTS' redefined - replaced with new definition, Previous definition was found here ('/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/cluster_peripherals-cc771700129bb934/icache_ctrl_unit/pri_icache_ctrl_unit.sv',37|23 ).
 xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
         if (|w_req_int[0] | |clr_core_stat_transp[i])
                             |
@@ -210,22 +210,6 @@ xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
 package jtag_pkg;
                |
 xmvlog: *W,TSNSPK (../rtl/tb/jtag_pkg.sv,17|15): `timescale is not specified for the package.  The default timescale of 1ns/1ns will be assumed for this package.
-xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-interface IPR_READ_IF (
-                    |
-xmvlog: *W,RECOMP (../rtl/ipr_dir/read_write_interface.sv,6|20): recompiling design unit worklib.IPR_READ_IF.
-	First compiled from line 6 of ../rtl/ipr_dir/read_write_interface.sv.
-interface IPR_WRITE_IF (
-                     |
-xmvlog: *W,RECOMP (../rtl/ipr_dir/read_write_interface.sv,28|21): recompiling design unit worklib.IPR_WRITE_IF.
-	First compiled from line 28 of ../rtl/ipr_dir/read_write_interface.sv.
-xmvlog(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-    input  logic [ASIZE:0]   src_ptr,
-                                   |
-xmvlog: *W,NODNTW (../rtl/ipr_dir/sv_ipr/rtl/sync_ptr.sv,9|35): Implicit net port (src_ptr) is not allowed since `default_nettype is declared as 'none'; 'wire' used instead [19.2(IEEE 2001)].
-    input logic rinc_mem
-                       |
-xmvlog: *W,NODNTW (../rtl/ipr_dir/sv_ipr/rtl/async_fifo.sv,26|23): Implicit net port (rinc_mem) is not allowed since `default_nettype is declared as 'none'; 'wire' used instead [19.2(IEEE 2001)].
 xmelab(64): 24.03-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
   pad_frame pad_frame_i
                       |
@@ -277,94 +261,94 @@ xmelab: (../rtl/pulp/pad_frame.sv,222): pad_hyper_reset
 
     FLL_BUS s_soc_fll_master ();
                            |
-xmelab: *W,CUVWSI (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/pulp_soc.sv,379|27): 1 input port was not connected:
-xmelab: (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/src/fll_intf.sv,13): clk_i
+xmelab: *W,CUVWSI (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/pulp_soc.sv,379|27): 1 input port was not connected:
+xmelab: (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/src/fll_intf.sv,13): clk_i
 
     FLL_BUS s_per_fll_master ();
                            |
-xmelab: *W,CUVWSI (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/pulp_soc.sv,381|27): 1 input port was not connected:
-xmelab: (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/src/fll_intf.sv,13): clk_i
+xmelab: *W,CUVWSI (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/pulp_soc.sv,381|27): 1 input port was not connected:
+xmelab: (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/src/fll_intf.sv,13): clk_i
 
     FLL_BUS s_cluster_fll_master ();
                                |
-xmelab: *W,CUVWSI (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/pulp_soc.sv,383|31): 1 input port was not connected:
-xmelab: (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/src/fll_intf.sv,13): clk_i
+xmelab: *W,CUVWSI (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/pulp_soc.sv,383|31): 1 input port was not connected:
+xmelab: (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/apb_fll_if-30645ac88ad7542f/src/fll_intf.sv,13): clk_i
 
             ) i_uart(
                    |
-xmelab: *W,CUVWSP (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/udma_subsystem/udma_subsystem.sv,450|19): 2 output ports were not connected:
-xmelab: (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/udma_uart-987a5c3aaae1cf57/rtl/udma_uart_top.sv,32): rx_char_event_o
-xmelab: (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/udma_uart-987a5c3aaae1cf57/rtl/udma_uart_top.sv,33): err_event_o
+xmelab: *W,CUVWSP (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/udma_subsystem/udma_subsystem.sv,450|19): 2 output ports were not connected:
+xmelab: (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/udma_uart-987a5c3aaae1cf57/rtl/udma_uart_top.sv,32): rx_char_event_o
+xmelab: (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/udma_uart-987a5c3aaae1cf57/rtl/udma_uart_top.sv,33): err_event_o
 
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                        '{default: C_DIV},               // DIVSQRT
                                       |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/fpu_interco-f206baa74ecb3390/FP_WRAP/fpnew_wrapper.sv,140|38): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
                                                     LatencyMode: axi_pkg::CUT_MST_AX | axi_pkg::MuxW,
                                                                                      |
-xmelab: *W,ENUMERR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/soc_interconnect.sv,279|85): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
+xmelab: *W,ENUMERR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_soc-c519334bd3ac5582/rtl/pulp_soc/soc_interconnect.sv,279|85): This assignment is a violation of SystemVerilog strong typing rules for enumeration datatypes.
     .term_evt_o                ( {term_event_pe_o,term_event_cl_o,term_event_o}     ),
                                  |
-xmelab: *W,CUVMPW (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_cluster-48721e3ce381c984/rtl/dmac_wrap.sv,267|33): port sizes differ in port connection(6/10) for the instance(tb_pulp.i_dut.cluster_domain_i.cluster_i.dmac_wrap_i) .
+xmelab: *W,CUVMPW (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_cluster-48721e3ce381c984/rtl/dmac_wrap.sv,267|33): port sizes differ in port connection(6/10) for the instance(tb_pulp.i_dut.cluster_domain_i.cluster_i.dmac_wrap_i) .
     .term_int_o                ( {term_irq_pe_o,term_irq_cl_o,term_irq_o      }     ),
                                  |
-xmelab: *W,CUVMPW (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/pulp_cluster-48721e3ce381c984/rtl/dmac_wrap.sv,268|33): port sizes differ in port connection(6/10) for the instance(tb_pulp.i_dut.cluster_domain_i.cluster_i.dmac_wrap_i) .
+xmelab: *W,CUVMPW (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/pulp_cluster-48721e3ce381c984/rtl/dmac_wrap.sv,268|33): port sizes differ in port connection(6/10) for the instance(tb_pulp.i_dut.cluster_domain_i.cluster_i.dmac_wrap_i) .
                   $readmemh(stimuli_file, stimuli);
                                                 |
 xmelab: *W,MEMODR (../rtl/tb/tb_pulp.sv,857|48): $readmem default memory order incompatible with IEEE1364.
@@ -379,5 +363,5 @@ xmelab: *W,MEMODR (../rtl/vip/camera/cam_vip.sv,88|42): $readmem default memory 
 xmelab: *W,MEMODR (../rtl/vip/camera/cam_vip.sv,89|42): $readmem default memory order incompatible with IEEE1364.
      $readmemb(FILE_NAME, MEM);
                             |
-xmelab: *W,MEMODR (/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/.bender/git/checkouts/tech_cells_generic-6a4b27e0e56cbcda/src/deprecated/generic_rom.sv,31|28): $readmem default memory order incompatible with IEEE1364.
-make[1]: Leaving directory '/project/tsmc16/users/iday/ws/git/riscv-grid/pulp/sim'
+xmelab: *W,MEMODR (/project/tsmc16/users/abergen/aura/riscv-grid/pulp/.bender/git/checkouts/tech_cells_generic-6a4b27e0e56cbcda/src/deprecated/generic_rom.sv,31|28): $readmem default memory order incompatible with IEEE1364.
+make[1]: Leaving directory '/project/tsmc16/users/abergen/aura/riscv-grid/pulp/sim'
